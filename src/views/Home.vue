@@ -1,18 +1,36 @@
 <template>
   <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <nav class="nav">
+      <div class="nav__brand">Quiter!</div>
+      <div class="nav__btn"></div>
+    </nav>
+    <main class="main"></main>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+<style lang="scss" scoped>
+.home {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 8rem 1fr;
+}
 
-export default {
-  name: "home",
-  components: {
-    HelloWorld
+.nav {
+  background-color: blue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  color: #fff;
+
+  &__brand {
+    font-size: 2.5rem;
+    text-transform: uppercase;
   }
-};
-</script>
+}
+
+.main {
+  background-color: #ccc;
+  padding: 2rem;
+}
+</style>
