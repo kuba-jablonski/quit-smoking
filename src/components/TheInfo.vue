@@ -2,29 +2,25 @@
   <div class="card">
     <div class="info__row">
       <p class="title info__title">Quit smoking:</p>
-      <div class="info__data">{{ timeWithout }}</div>
+      <div class="info__data">{{ timeWithoutSmoking }}</div>
     </div>
     <div class="info__row">
       <p class="title info__title">Papierosy niezapalone:</p>
-      <div class="info__data">35</div>
+      <div class="info__data">{{ cigsNotSmoked }}</div>
     </div>
     <div class="info__row">
-      <p class="title info__title">Pieniądze zaoszczędzone:</p>
-      <div class="info__data">26,25 PLN</div>
+      <p class="title info__title">Money saved:</p>
+      <div class="info__data">{{ moneySaved }} PLN</div>
     </div>
-    <div class="info__row">
-      <p class="title info__title">Czas odzyskany:</p>
-      <div class="info__data">03:30</div>
-    </div> 
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   computed: {
-    timeWithout() {
-      return this.$store.getters.daysWithout;
-    }
+    ...mapGetters(["timeWithoutSmoking", "cigsNotSmoked", "moneySaved"])
   }
 };
 </script>

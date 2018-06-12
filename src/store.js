@@ -26,18 +26,21 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    costPerCig(state) {
-      const cost = state.costPerPack / state.cigsPerPack;
+    costPerCig({ costPerPack, cigsPerPack }) {
+      const cost = costPerPack / cigsPerPack;
       return cost.toFixed(2);
     },
-    daysWithout(state) {
+    timeWithoutSmoking(state) {
       return state.quitDate.from(state.currentTime);
     },
-    cigsNotSmoked(state) {
-      const cigInterval = (24 * 60 * 60 * 1000) / state.cigsPerDay;
+    cigsNotSmoked({ cigsPerDay, currentTime, quitDate }) {
+      const cigInterval = (24 * 60 * 60 * 1000) / cigsPerDay;
       const timeDiff =
-        moment(state.currentTime).valueOf() - moment(state.quitDate).valueOf();
+        moment(currentTime).valueOf() - moment(quitDate).valueOf();
       return Math.floor(timeDiff / cigInterval);
+    },
+    moneySaved(state, { costPerCig, cigsNotSmoked }) {
+      return cigsNotSmoked * costPerCig;
     }
   }
 });
