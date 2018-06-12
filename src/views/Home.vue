@@ -4,9 +4,22 @@
       <div class="nav__brand">Quiter!</div>
       <div class="nav__btn"></div>
     </nav>
-    <main class="main"></main>
+    <main class="main">
+      <the-info/>
+    </main>
   </div>
 </template>
+
+<script>
+import TheInfo from "@/components/TheInfo";
+
+export default {
+  components: {
+    TheInfo
+  }
+};
+</script>
+
 
 <style lang="scss" scoped>
 .home {
