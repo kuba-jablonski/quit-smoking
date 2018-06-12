@@ -16,21 +16,22 @@
 }
 
 .nav {
-  background-color: blue;
+  background-color: $color-primary;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1rem;
   color: #fff;
 
   &__brand {
+    font-family: $font-display;
     font-size: 2.5rem;
     text-transform: uppercase;
   }
 }
 
 .main {
-  background-color: #ccc;
-  padding: 2rem;
+  background-color: $color-grey-light-1;
+  padding: 1rem;
 }
 </style>
