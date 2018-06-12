@@ -2,23 +2,24 @@
   <div class="home">
     <nav class="nav">
       <div class="nav__brand">Quiter!</div>
-      <div class="nav__btn">
-
-      </div>
+      <router-link to="/settings">
+        <settings-icon class="nav__btn"/>
+      </router-link>
     </nav>
     <main class="main">
       <the-info/>
-      
     </main>
   </div>
 </template>
 
 <script>
 import TheInfo from "@/components/TheInfo";
+import SettingsIcon from "@/assets/svg/settings.svg";
 
 export default {
   components: {
-    TheInfo
+    TheInfo,
+    SettingsIcon
   }
 };
 </script>
@@ -43,6 +44,14 @@ export default {
     font-family: $font-display;
     font-size: 2.5rem;
     text-transform: uppercase;
+  }
+
+  &__btn {
+    height: 3rem;
+    width: 3rem;
+    fill: #fff;
+    display: flex;
+    align-items: center;
   }
 }
 
