@@ -6,6 +6,9 @@
         Settings
       </router-link>
     </nav>
+    <main class="main">
+
+    </main>
   </div>
 </template>
 
@@ -49,5 +52,10 @@ export default {
     margin-right: 1rem;
     fill: #fff;
   }
+}
+
+.main {
+  background-color: $color-grey-light-1;
+  padding: 1rem;
 }
 </style>
