@@ -7,7 +7,7 @@
       </router-link>
     </nav>
     <main class="main">
-
+      <datetime v-model="date"></datetime>
     </main>
   </div>
 </template>
@@ -18,6 +18,11 @@ import ArrowBack from "@/assets/svg/arrow_back.svg";
 export default {
   components: {
     ArrowBack
+  },
+  data() {
+    return {
+      date: null
+    };
   }
 };
 </script>
