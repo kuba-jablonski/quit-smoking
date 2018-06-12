@@ -1,8 +1,8 @@
 <template>
   <div class="card">
     <div class="info__row">
-      <p class="title info__title">Dni bez palenia:</p>
-      <div class="info__data">1d, 17:59</div>
+      <p class="title info__title">Quit smoking:</p>
+      <div class="info__data">{{ timeWithout }}</div>
     </div>
     <div class="info__row">
       <p class="title info__title">Papierosy niezapalone:</p>
@@ -18,6 +18,17 @@
     </div> 
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    timeWithout() {
+      return this.$store.getters.daysWithout;
+    }
+  }
+};
+</script>
+
 
 <style lang="scss" scoped>
 .card {
