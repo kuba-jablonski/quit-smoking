@@ -2,10 +2,13 @@
   <div class="home">
     <nav class="nav">
       <div class="nav__brand">Quiter!</div>
-      <div class="nav__btn"></div>
+      <div class="nav__btn">
+
+      </div>
     </nav>
     <main class="main">
       <the-info/>
+      
     </main>
   </div>
 </template>
