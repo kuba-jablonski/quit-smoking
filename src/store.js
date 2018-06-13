@@ -17,6 +17,18 @@ export default new Vuex.Store({
   mutations: {
     setCurrentTime(state, time) {
       state.currentTime = time;
+    },
+    setCigsCount(state, payload) {
+      state.cigsPerDay = payload;
+    },
+    setPackCount: (state, payload) => {
+      state.cigsPerPack = payload;
+    },
+    setPackCost: (state, payload) => {
+      state.costPerPack = payload;
+    },
+    setQuitDate: (state, payload) => {
+      state.quitDate = payload;
     }
   },
   actions: {
@@ -25,10 +37,19 @@ export default new Vuex.Store({
       setInterval(() => {
         commit("setCurrentTime", DateTime.local());
       }, 1000);
+    },
+    saveSettings({ commit, state }, payload) {
+      console.log(payload);
+      commit("setCigsCount", payload.cigCount);
+      commit("setPackCount", payload.packCount);
+      commit("setPackCost", payload.packCost);
+      commit("setQuitDate", payload.quitDate);
+      console.log(state.cigsPerDay);
     }
   },
   getters: {
     costPerCig({ costPerPack, cigsPerPack }) {
+      console.log(costPerPack, cigsPerPack);
       const cost = costPerPack / cigsPerPack;
       return cost.toFixed(2);
     },
@@ -43,6 +64,7 @@ export default new Vuex.Store({
       return Math.floor(timeDiff / cigInterval);
     },
     moneySaved(state, { costPerCig, cigsNotSmoked }) {
+      console.log(costPerCig, cigsNotSmoked);
       return cigsNotSmoked * costPerCig;
     },
     settingsSet({ quitDate, cigsPerDay, cigsPerPack, costPerPack }) {

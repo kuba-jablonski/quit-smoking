@@ -1,5 +1,5 @@
 <template>
-  <form class="form">
+  <form @submit.prevent="onSubmit" class="form">
     <div class="form__control">
       <label class="form__label" for="cig-count">How many daily cigarettes did you smoke?</label>
       <input v-model="cigCount" type="number" class="form__input" id="cig-count">
@@ -31,6 +31,17 @@ export default {
       packPrice: "",
       quitDate: DateTime.local().toISO()
     };
+  },
+  methods: {
+    onSubmit() {
+      console.log(DateTime.fromISO(this.quitDate));
+      this.$store.dispatch("saveSettings", {
+        cigCount: Number(this.cigCount),
+        packCount: Number(this.packCount),
+        packCost: Number(this.packPrice),
+        quitDate: DateTime.fromISO(this.quitDate)
+      });
+    }
   }
 };
 </script>
