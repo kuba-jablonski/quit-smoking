@@ -1,4 +1,5 @@
 <template>
+    <transition name="slide-half">
   <div class="home">
     <nav class="nav">
       <div class="nav__brand">Quiter!</div>
@@ -10,6 +11,7 @@
       <the-info/>
     </main>
   </div>
+</transition>
 </template>
 
 <script>
@@ -28,8 +30,10 @@ export default {
 <style lang="scss" scoped>
 .home {
   height: 100%;
+  width: 100%;
   display: grid;
   grid-template-rows: 8rem 1fr;
+  position: absolute;
 }
 
 .nav {
@@ -58,5 +62,17 @@ export default {
 .main {
   background-color: $color-grey-light-1;
   padding: 1rem;
+}
+
+.slide-half-enter-active {
+  transition: transform 0.3s ease-out;
+}
+
+.slide-half-leave-active {
+  transition: transform 0.3s ease-out;
+}
+.slide-half-enter,
+.slide-half-leave-to {
+  transform: translateX(-30%);
 }
 </style>

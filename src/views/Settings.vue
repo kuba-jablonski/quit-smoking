@@ -1,4 +1,5 @@
 <template>
+<transition name="slide">
   <div class="settings">
     <nav class="nav">
       <router-link to="/" class="nav__btn">
@@ -10,6 +11,7 @@
       <datetime type="datetime" :week-start="1" v-model="datetime"></datetime>
     </main>
   </div>
+</transition>
 </template>
 
 <script>
@@ -32,8 +34,11 @@ export default {
 <style lang="scss" scoped>
 .settings {
   height: 100%;
+  width: 100%;
   display: grid;
   grid-template-rows: 8rem 1fr;
+  position: absolute;
+  z-index: 1;
 }
 
 .nav {
@@ -63,5 +68,16 @@ export default {
 .main {
   background-color: $color-grey-light-1;
   padding: 1rem;
+}
+
+.slide-enter-active {
+  transition: transform 0.3s ease-out;
+}
+.slide-leave-active {
+  transition: transform 0.3s ease-out;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(100%);
 }
 </style>
