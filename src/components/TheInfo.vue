@@ -32,6 +32,7 @@ export default {
       return `${dateString} ${timeString}`;
 
       function padWithZeros(value) {
+        if (!value) return "00";
         return value < 10 ? "0" + value : value;
       }
     }

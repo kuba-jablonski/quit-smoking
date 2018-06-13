@@ -8,7 +8,8 @@
       </router-link>
     </nav>
     <main class="main">
-      <datetime type="datetime" :week-start="1" v-model="datetime"></datetime>
+      <the-form/>
+      
     </main>
   </div>
 </transition>
@@ -16,16 +17,12 @@
 
 <script>
 import ArrowBack from "@/assets/svg/arrow_back.svg";
-import { DateTime } from "luxon";
+import TheForm from "@/components/Settings/TheForm";
 
 export default {
   components: {
-    ArrowBack
-  },
-  data() {
-    return {
-      datetime: DateTime.local().toISO()
-    };
+    ArrowBack,
+    TheForm
   }
 };
 </script>

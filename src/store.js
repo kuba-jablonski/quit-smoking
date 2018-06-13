@@ -8,10 +8,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    quitDate: DateTime.local().minus({ hours: 5 }),
-    cigsPerDay: 20,
-    cigsPerPack: 20,
-    costPerPack: 15,
+    quitDate: DateTime.local(),
+    cigsPerDay: null,
+    cigsPerPack: null,
+    costPerPack: null,
     currentTime: null
   },
   mutations: {
@@ -44,6 +44,9 @@ export default new Vuex.Store({
     },
     moneySaved(state, { costPerCig, cigsNotSmoked }) {
       return cigsNotSmoked * costPerCig;
+    },
+    settingsSet({ quitDate, cigsPerDay, cigsPerPack, costPerPack }) {
+      return quitDate && cigsPerDay && cigsPerPack && costPerPack;
     }
   }
 });
