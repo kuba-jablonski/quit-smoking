@@ -7,7 +7,7 @@
       </router-link>
     </nav>
     <main class="main">
-      <datetime type="datetime" v-model="datetime"></datetime>
+      <datetime type="datetime" :week-start="1" v-model="datetime"></datetime>
     </main>
   </div>
 </template>
