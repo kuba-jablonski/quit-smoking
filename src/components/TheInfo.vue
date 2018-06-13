@@ -2,7 +2,7 @@
   <div class="card">
     <div class="info__row">
       <p class="title info__title">Quit smoking:</p>
-      <div class="info__data">{{ timeWithoutSmoking }}</div>
+      <div class="info__data">{{ timeWithoutSmoking | dateObjectToString }}</div>
     </div>
     <div class="info__row">
       <p class="title info__title">Papierosy niezapalone:</p>
@@ -21,6 +21,20 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["timeWithoutSmoking", "cigsNotSmoked", "moneySaved"])
+  },
+  filters: {
+    dateObjectToString({ days, hours, minutes }) {
+      const dateString = days ? `${days}d,` : "";
+      const timeString = `${padWithZeros(hours)}:${padWithZeros(
+        Math.floor(minutes)
+      )}`;
+
+      return `${dateString} ${timeString}`;
+
+      function padWithZeros(value) {
+        return value < 10 ? "0" + value : value;
+      }
+    }
   }
 };
 </script>

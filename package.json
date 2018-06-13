@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "luxon": "^1.2.1",
-    "moment": "^2.22.2",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.16",
     "vue-datetime": "^1.0.0-beta.3",

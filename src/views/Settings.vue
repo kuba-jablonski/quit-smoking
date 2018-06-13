@@ -7,13 +7,14 @@
       </router-link>
     </nav>
     <main class="main">
-      <datetime v-model="date"></datetime>
+      <datetime type="datetime" v-model="datetime"></datetime>
     </main>
   </div>
 </template>
 
 <script>
 import ArrowBack from "@/assets/svg/arrow_back.svg";
+import { DateTime } from "luxon";
 
 export default {
   components: {
@@ -21,7 +22,7 @@ export default {
   },
   data() {
     return {
-      date: null
+      datetime: DateTime.local().toISO()
     };
   }
 };
