@@ -2,15 +2,15 @@
   <form @submit.prevent="onSubmit" class="form">
     <div class="form__control">
       <label class="form__label" for="cig-count">How many daily cigarettes did you smoke?</label>
-      <input v-model="cigsPerDay" type="number" class="form__input" id="cig-count">
+      <input v-model="cigsPerDay" type="number" min="1" class="form__input" id="cig-count">
     </div>
     <div class="form__control">
       <label class="form__label" for="pack-count">How many cigarettes were in a pack?</label>
-      <input v-model="cigsInPack" type="number" class="form__input" id="pack-count">
+      <input v-model="cigsInPack" type="number" min="1" class="form__input" id="pack-count">
     </div>
     <div class="form__control">
       <label class="form__label" for="pack-price">What was the price of a pack?</label>
-      <input v-model="packCost" type="number" class="form__input" id="pack-price">
+      <input v-model="packCost" type="number" min="0" step="0.01" class="form__input" id="pack-price">
     </div>
     <div class="form__control">
       <label class="form__label">When did you quit smoking?</label>
@@ -43,9 +43,9 @@ export default {
       this.$router.push("/");
     },
     populateFormFields() {
-      const { cigsPerDay, cigsPerPack, packCost, quitDate } = this.$store.state;
+      const { cigsPerDay, cigsInPack, packCost, quitDate } = this.$store.state;
       this.cigsPerDay = cigsPerDay;
-      this.cigsInPack = cigsPerPack;
+      this.cigsInPack = cigsInPack;
       this.packCost = packCost;
       this.quitDate = quitDate.toISO();
     }
