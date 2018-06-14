@@ -10,7 +10,7 @@
     </div>
     <div class="form__control">
       <label class="form__label" for="pack-price">What was the price of a pack?</label>
-      <input v-model="packPrice" type="number" class="form__input" id="pack-price">
+      <input v-model="packCost" type="number" class="form__input" id="pack-price">
     </div>
     <div class="form__control">
       <label class="form__label">When did you quit smoking?</label>
@@ -28,7 +28,7 @@ export default {
     return {
       cigCount: "",
       packCount: "",
-      packPrice: "",
+      packCost: "",
       quitDate: DateTime.local().toISO()
     };
   },
@@ -38,10 +38,26 @@ export default {
       this.$store.dispatch("saveSettings", {
         cigCount: Number(this.cigCount),
         packCount: Number(this.packCount),
-        packCost: Number(this.packPrice),
+        packCost: Number(this.packCost),
         quitDate: DateTime.fromISO(this.quitDate)
       });
+      this.$router.push("/");
+    },
+    populateFormFields() {
+      const {
+        cigsPerDay,
+        cigsPerPack,
+        costPerPack,
+        quitDate
+      } = this.$store.state;
+      this.cigCount = cigsPerDay;
+      this.packCount = cigsPerPack;
+      this.packCost = costPerPack;
+      this.quitDate = quitDate.toISO();
     }
+  },
+  mounted() {
+    if (this.$store.getters.settingsSet) this.populateFormFields();
   }
 };
 </script>
