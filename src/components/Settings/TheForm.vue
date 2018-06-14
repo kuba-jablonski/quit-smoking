@@ -38,7 +38,7 @@ export default {
         cigsPerDay: Number(this.cigsPerDay),
         cigsInPack: Number(this.cigsInPack),
         packCost: Number(this.packCost),
-        quitDate: DateTime.fromISO(this.quitDate)
+        quitDate: this.quitDate
       });
       this.$router.push("/");
     },

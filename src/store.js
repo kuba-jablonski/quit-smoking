@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    quitDate: DateTime.local(),
+    quitDate: DateTime.local().toISO(),
     cigsPerDay: null,
     cigsInPack: null,
     packCost: null,
@@ -46,18 +46,23 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    quitDateObject({ quitDate }) {
+      console.log(quitDate);
+      return DateTime.fromISO(quitDate);
+    },
     costPerCig({ packCost, cigsInPack }) {
       const cost = packCost / cigsInPack;
       return cost.toFixed(2);
     },
-    timeWithoutSmoking({ quitDate, currentTime }) {
+    timeWithoutSmoking({ currentTime }, { quitDateObject }) {
+      console.log(quitDateObject);
       return currentTime
-        .diff(quitDate, ["days", "hours", "minutes"])
+        .diff(quitDateObject, ["days", "hours", "minutes"])
         .toObject();
     },
-    cigsNotSmoked({ cigsPerDay, currentTime, quitDate }) {
+    cigsNotSmoked({ cigsPerDay, currentTime }, { quitDateObject }) {
       const cigInterval = (24 * 60 * 60 * 1000) / cigsPerDay;
-      const timeDiff = currentTime.toMillis() - quitDate.toMillis();
+      const timeDiff = currentTime.toMillis() - quitDateObject.toMillis();
       return Math.floor(timeDiff / cigInterval);
     },
     moneySaved(state, { costPerCig, cigsNotSmoked }) {
