@@ -10,8 +10,8 @@ export default new Vuex.Store({
   state: {
     quitDate: DateTime.local(),
     cigsPerDay: null,
-    cigsPerPack: null,
-    costPerPack: null,
+    cigsInPack: null,
+    packCost: null,
     currentTime: null
   },
   mutations: {
@@ -21,13 +21,13 @@ export default new Vuex.Store({
     setCigsCount(state, payload) {
       state.cigsPerDay = payload;
     },
-    setPackCount: (state, payload) => {
-      state.cigsPerPack = payload;
+    setPackCount(state, payload) {
+      state.cigsInPack = payload;
     },
-    setPackCost: (state, payload) => {
-      state.costPerPack = payload;
+    setPackCost(state, payload) {
+      state.packCost = payload;
     },
-    setQuitDate: (state, payload) => {
+    setQuitDate(state, payload) {
       state.quitDate = payload;
     }
   },
@@ -38,19 +38,16 @@ export default new Vuex.Store({
         commit("setCurrentTime", DateTime.local());
       }, 1000);
     },
-    saveSettings({ commit, state }, payload) {
-      console.log(payload);
-      commit("setCigsCount", payload.cigCount);
-      commit("setPackCount", payload.packCount);
+    saveSettings({ commit }, payload) {
+      commit("setCigsCount", payload.cigsPerDay);
+      commit("setPackCount", payload.cigsInPack);
       commit("setPackCost", payload.packCost);
       commit("setQuitDate", payload.quitDate);
-      console.log(state.cigsPerDay);
     }
   },
   getters: {
-    costPerCig({ costPerPack, cigsPerPack }) {
-      console.log(costPerPack, cigsPerPack);
-      const cost = costPerPack / cigsPerPack;
+    costPerCig({ packCost, cigsInPack }) {
+      const cost = packCost / cigsInPack;
       return cost.toFixed(2);
     },
     timeWithoutSmoking({ quitDate, currentTime }) {
@@ -64,11 +61,10 @@ export default new Vuex.Store({
       return Math.floor(timeDiff / cigInterval);
     },
     moneySaved(state, { costPerCig, cigsNotSmoked }) {
-      console.log(costPerCig, cigsNotSmoked);
       return cigsNotSmoked * costPerCig;
     },
-    settingsSet({ quitDate, cigsPerDay, cigsPerPack, costPerPack }) {
-      return quitDate && cigsPerDay && cigsPerPack && costPerPack;
+    settingsSet({ quitDate, cigsPerDay, cigsInPack, packCost }) {
+      return quitDate && cigsPerDay && cigsInPack && packCost;
     }
   }
 });

@@ -2,11 +2,11 @@
   <form @submit.prevent="onSubmit" class="form">
     <div class="form__control">
       <label class="form__label" for="cig-count">How many daily cigarettes did you smoke?</label>
-      <input v-model="cigCount" type="number" class="form__input" id="cig-count">
+      <input v-model="cigsPerDay" type="number" class="form__input" id="cig-count">
     </div>
     <div class="form__control">
       <label class="form__label" for="pack-count">How many cigarettes were in a pack?</label>
-      <input v-model="packCount" type="number" class="form__input" id="pack-count">
+      <input v-model="cigsInPack" type="number" class="form__input" id="pack-count">
     </div>
     <div class="form__control">
       <label class="form__label" for="pack-price">What was the price of a pack?</label>
@@ -26,33 +26,27 @@ import { DateTime } from "luxon";
 export default {
   data() {
     return {
-      cigCount: "",
-      packCount: "",
+      cigsPerDay: "",
+      cigsInPack: "",
       packCost: "",
       quitDate: DateTime.local().toISO()
     };
   },
   methods: {
     onSubmit() {
-      console.log(DateTime.fromISO(this.quitDate));
       this.$store.dispatch("saveSettings", {
-        cigCount: Number(this.cigCount),
-        packCount: Number(this.packCount),
+        cigsPerDay: Number(this.cigsPerDay),
+        cigsInPack: Number(this.cigsInPack),
         packCost: Number(this.packCost),
         quitDate: DateTime.fromISO(this.quitDate)
       });
       this.$router.push("/");
     },
     populateFormFields() {
-      const {
-        cigsPerDay,
-        cigsPerPack,
-        costPerPack,
-        quitDate
-      } = this.$store.state;
-      this.cigCount = cigsPerDay;
-      this.packCount = cigsPerPack;
-      this.packCost = costPerPack;
+      const { cigsPerDay, cigsPerPack, packCost, quitDate } = this.$store.state;
+      this.cigsPerDay = cigsPerDay;
+      this.cigsInPack = cigsPerPack;
+      this.packCost = packCost;
       this.quitDate = quitDate.toISO();
     }
   },
