@@ -39,6 +39,7 @@ export default new Vuex.Store({
       }, 1000);
     },
     saveSettings({ commit }, payload) {
+      localStorage.setItem("state", JSON.stringify(payload));
       commit("setCigsCount", payload.cigsPerDay);
       commit("setPackCount", payload.cigsInPack);
       commit("setPackCost", payload.packCost);

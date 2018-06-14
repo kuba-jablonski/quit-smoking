@@ -47,7 +47,7 @@ export default {
       this.cigsPerDay = cigsPerDay;
       this.cigsInPack = cigsInPack;
       this.packCost = packCost;
-      this.quitDate = quitDate.toISO();
+      this.quitDate = quitDate;
     }
   },
   mounted() {
