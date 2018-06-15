@@ -9,7 +9,7 @@
     </nav>
     <main class="main">
       <the-form/>
-      
+      <the-modal/>
     </main>
   </div>
 </transition>
@@ -18,11 +18,13 @@
 <script>
 import ArrowBack from "@/assets/svg/arrow_back.svg";
 import TheForm from "@/components/Settings/TheForm";
+import TheModal from "@/components/Settings/TheModal";
 
 export default {
   components: {
     ArrowBack,
-    TheForm
+    TheForm,
+    TheModal
   }
 };
 </script>
