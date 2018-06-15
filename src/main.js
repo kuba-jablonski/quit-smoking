@@ -11,9 +11,10 @@ Vue.use(Datetime);
 
 Vue.config.productionTip = false;
 
-const storedState = JSON.parse(localStorage.getItem("state"));
-store.dispatch("saveSettings", storedState);
 store.dispatch("trackTime");
+
+const settings = JSON.parse(localStorage.getItem("settings"));
+if (settings) store.dispatch("saveSettings", settings);
 
 new Vue({
   router,

@@ -39,7 +39,7 @@ export default new Vuex.Store({
       }, 1000);
     },
     saveSettings({ commit }, payload) {
-      localStorage.setItem("state", JSON.stringify(payload));
+      localStorage.setItem("settings", JSON.stringify(payload));
       commit("setCigsCount", payload.cigsPerDay);
       commit("setPackCount", payload.cigsInPack);
       commit("setPackCost", payload.packCost);
@@ -48,7 +48,6 @@ export default new Vuex.Store({
   },
   getters: {
     quitDateObject({ quitDate }) {
-      console.log(quitDate);
       return DateTime.fromISO(quitDate);
     },
     costPerCig({ packCost, cigsInPack }) {
@@ -56,7 +55,6 @@ export default new Vuex.Store({
       return cost.toFixed(2);
     },
     timeWithoutSmoking({ currentTime }, { quitDateObject }) {
-      console.log(quitDateObject);
       return currentTime
         .diff(quitDateObject, ["days", "hours", "minutes"])
         .toObject();
