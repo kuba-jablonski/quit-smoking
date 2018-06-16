@@ -9,7 +9,9 @@
 @import "css/typography";
 
 #app {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
+  position: relative;
+  overflow-x: hidden;
 }
 </style>
