@@ -1,8 +1,17 @@
 <template>
-  <div class="background">
-    <div class="modal">hi</div>
+  <div v-if="open" class="background">
+    <div class="modal">
+      <slot/>
+    </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["open"]
+};
+</script>
+
 
 <style lang="scss" scoped>
 .background {
@@ -21,6 +30,6 @@
 
 .modal {
   background-color: #fff;
-  padding: 1rem;
+  padding: 2rem 3rem;
 }
 </style>

@@ -34,13 +34,19 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$store.dispatch("saveSettings", {
+      // this.$store.dispatch("saveSettings", {
+      //   cigsPerDay: Number(this.cigsPerDay),
+      //   cigsInPack: Number(this.cigsInPack),
+      //   packCost: Number(this.packCost),
+      //   quitDate: this.quitDate
+      // });
+      // this.$router.push("/");
+      this.$emit("onSubmit", {
         cigsPerDay: Number(this.cigsPerDay),
         cigsInPack: Number(this.cigsInPack),
         packCost: Number(this.packCost),
         quitDate: this.quitDate
       });
-      this.$router.push("/");
     },
     populateFormFields() {
       const { cigsPerDay, cigsInPack, packCost, quitDate } = this.$store.state;
