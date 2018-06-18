@@ -1,14 +1,49 @@
 <template>
-  <div v-if="open" class="background">
-    <div class="modal">
-      <slot/>
+  <transition
+    :css="false"
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @leave="leave"
+  >
+    <div v-if="open" class="background">
+      <div ref="modal" class="modal">
+        <slot/>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
+import Velocity from "velocity-animate";
+
 export default {
-  props: ["open"]
+  props: ["open"],
+  methods: {
+    beforeEnter() {
+      this.$refs.modal.style.transform = "scale(.3)";
+      this.$refs.modal.style.opacity = 0;
+    },
+    enter(el, done) {
+      Velocity(el, { opacity: [1, 0] }, { duration: 200 });
+      Velocity(
+        this.$refs.modal,
+        { opacity: [1, 0], scaleX: [1, 0.3], scaleY: [1, 0.3] },
+        { duration: 200, delay: 100, complete: done }
+      );
+    },
+    leave(el, done) {
+      Velocity(
+        this.$refs.modal,
+        { opacity: [0, 1], scaleX: [0.3, 1], scaleY: [0.3, 1] },
+        { duration: 200 }
+      );
+      Velocity(
+        el,
+        { opacity: [0, 1] },
+        { duration: 200, delay: 100, complete: done }
+      );
+    }
+  }
 };
 </script>
 

@@ -50,7 +50,7 @@ export default {
         this.modal.open = false;
         setTimeout(() => {
           this.$router.push("/");
-        }, 500);
+        }, 300);
       };
     }
   }
