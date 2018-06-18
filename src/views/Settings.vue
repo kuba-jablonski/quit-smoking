@@ -10,7 +10,7 @@
     <main class="main">
       <the-form @onSubmit="saveSettings($event)"/>
       <the-modal :open="modal.open">
-        <p class="p">Are you sure?</p>
+        <p class="p">{{ modal.text }}</p>
         <base-button class="btn--confirm" @click.native="modal.onConfirm">Yes</base-button>
         <base-button class="btn--deny" @click.native="modal.open = false">No</base-button>
       </the-modal>
@@ -36,6 +36,7 @@ export default {
     return {
       modal: {
         open: false,
+        text: "",
         onConfirm: null
       }
     };
@@ -43,6 +44,7 @@ export default {
   methods: {
     saveSettings(settings) {
       this.modal.open = true;
+      this.modal.text = "Are you are you want to change your settings?";
       this.modal.onConfirm = () => {
         this.$store.dispatch("saveSettings", settings);
         this.modal.open = false;
