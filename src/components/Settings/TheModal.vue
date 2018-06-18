@@ -1,12 +1,11 @@
 <template>
   <transition
     :css="false"
-    @before-enter="beforeEnter"
     @enter="enter"
     @leave="leave"
   >
     <div v-if="open" class="background">
-      <div ref="modal" class="modal">
+      <div ref="modal" :style="initialModalStyle" class="modal">
         <slot/>
       </div>
     </div>
@@ -18,11 +17,15 @@ import Velocity from "velocity-animate";
 
 export default {
   props: ["open"],
+  data() {
+    return {
+      initialModalStyle: {
+        transform: "scale(.3)",
+        opacity: 0
+      }
+    };
+  },
   methods: {
-    beforeEnter() {
-      this.$refs.modal.style.transform = "scale(.3)";
-      this.$refs.modal.style.opacity = 0;
-    },
     enter(el, done) {
       Velocity(el, { opacity: [1, 0] }, { duration: 200 });
       Velocity(
