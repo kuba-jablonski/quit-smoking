@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div v-if="hasQuit" class="card">
     <div class="info__row">
       <p class="title info__title">Quit smoking:</p>
       <div class="info__data">{{ timeWithoutSmoking | dateObjectToString }}</div>
@@ -13,6 +13,13 @@
       <div class="info__data">{{ moneySaved }} PLN</div>
     </div>
   </div>
+  <div v-else class="card">
+    <div class="info__row">
+      <p class="title info__title">Quitting in:</p>
+      <div class="info__data">{{ timeWithoutSmoking | dateObjectToString }}</div>
+    </div>
+    <p>Good luck!</p>
+  </div>
 </template>
 
 <script>
@@ -20,13 +27,16 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["timeWithoutSmoking", "cigsNotSmoked", "moneySaved"])
+    ...mapGetters(["timeWithoutSmoking", "cigsNotSmoked", "moneySaved"]),
+    hasQuit() {
+      return this.timeWithoutSmoking.minutes >= 0;
+    }
   },
   filters: {
     dateObjectToString({ days, hours, minutes }) {
       const dateString = days ? `${days}d,` : "";
-      const timeString = `${padWithZeros(hours)}:${padWithZeros(
-        Math.floor(minutes)
+      const timeString = `${padWithZeros(Math.abs(hours))}:${padWithZeros(
+        Math.floor(Math.abs(minutes))
       )}`;
 
       return `${dateString} ${timeString}`;
@@ -53,11 +63,11 @@ export default {
     justify-content: space-between;
     align-items: center;
 
-    &:not(:first-child) {
+    &:not(:first-of-type) {
       padding-top: 1rem;
     }
 
-    &:not(:last-child) {
+    &:not(:last-of-type) {
       padding-bottom: 1rem;
       border-bottom: 1px solid $color-grey-light-2;
     }
