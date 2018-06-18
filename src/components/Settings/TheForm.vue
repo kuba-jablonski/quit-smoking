@@ -121,4 +121,8 @@ export default {
   color: $color-primary;
   text-align: inherit;
 }
+
+.vdatetime-popup {
+  text-align: left;
+}
 </style>
