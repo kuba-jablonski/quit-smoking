@@ -6,13 +6,13 @@
 
 <style lang="scss">
 .btn {
-  // font-family: "Roboto medium", sans-serif;
-  font-size: 14px;
+  font-family: $font-base;
+  font-size: 1.4rem;
   font-weight: 600;
   display: inline-block;
-  height: 36px;
-  min-width: 88px;
-  padding: 6px 16px;
+  height: 3.6rem;
+  min-width: 8.8rem;
+  padding: 0.6rem 1.6rem;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
