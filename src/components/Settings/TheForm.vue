@@ -2,15 +2,15 @@
   <form @submit.prevent="onSubmit" class="form">
     <div class="form__control">
       <label class="form__label" for="cig-count">How many daily cigarettes did you smoke?</label>
-      <input v-model="cigsPerDay" type="number" min="1" class="form__input" id="cig-count">
+      <input v-model.number="cigsPerDay" type="number" min="1" max="100" required class="form__input" id="cig-count">
     </div>
     <div class="form__control">
       <label class="form__label" for="pack-count">How many cigarettes were in a pack?</label>
-      <input v-model="cigsInPack" type="number" min="1" class="form__input" id="pack-count">
+      <input v-model.number="cigsInPack" type="number" min="1" max="100" required class="form__input" id="pack-count">
     </div>
     <div class="form__control">
       <label class="form__label" for="pack-price">What was the price of a pack?</label>
-      <input v-model="packCost" type="number" min="0" step="0.01" class="form__input" id="pack-price">
+      <input v-model.number="packCost" type="number" min="0" max="100" required step="0.01" class="form__input" id="pack-price">
     </div>
     <div class="form__control">
       <label class="form__label">When did you quit smoking?</label>
@@ -34,17 +34,10 @@ export default {
   },
   methods: {
     onSubmit() {
-      // this.$store.dispatch("saveSettings", {
-      //   cigsPerDay: Number(this.cigsPerDay),
-      //   cigsInPack: Number(this.cigsInPack),
-      //   packCost: Number(this.packCost),
-      //   quitDate: this.quitDate
-      // });
-      // this.$router.push("/");
       this.$emit("onSubmit", {
-        cigsPerDay: Number(this.cigsPerDay),
-        cigsInPack: Number(this.cigsInPack),
-        packCost: Number(this.packCost),
+        cigsPerDay: this.cigsPerDay,
+        cigsInPack: this.cigsInPack,
+        packCost: this.packCost,
         quitDate: this.quitDate
       });
     },
