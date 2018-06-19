@@ -10,9 +10,9 @@
     <main class="main">
       <the-form @onSubmit="saveSettings($event)"/>
       <the-modal :open="modal.open">
-        <p class="p">{{ modal.text }}</p>
-        <base-button class="btn--confirm" @click.native="modal.onConfirm">Yes</base-button>
-        <base-button class="btn--deny" @click.native="modal.open = false">No</base-button>
+        <p class="mb-hg">{{ modal.text }}</p>
+        <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
+        <base-button color="red" @click.native="modal.open = false">No</base-button>
       </the-modal>
     </main>
   </div>
@@ -95,31 +95,6 @@ export default {
 .main {
   background-color: $color-grey-light-1;
   padding: 1rem;
-}
-
-.btn {
-  margin-top: 3rem;
-
-  &--confirm {
-    margin-right: 1rem;
-    color: $color-secondary;
-    background-color: lighten($color-secondary, 40%);
-
-    &:hover,
-    &:active {
-      background-color: lighten($color-secondary, 30%);
-    }
-  }
-
-  &--deny {
-    color: $color-tertiary;
-    background-color: lighten($color-tertiary, 33%);
-
-    &:hover,
-    &:active {
-      background-color: lighten($color-tertiary, 28%);
-    }
-  }
 }
 
 .slide-enter-active {

@@ -16,14 +16,18 @@
       <label class="form__label">When did you quit smoking?</label>
       <datetime type="datetime" :week-start="1" v-model="quitDate"></datetime>
     </div>
-    <button type="submit" class="form__btn">Save</button> 
+    <base-button class="mt-md" type="submit" color="green" fullWidth>Save</base-button>
   </form>
 </template>
 
 <script>
+import BaseButton from "@/components/Base/BaseButton";
 import { DateTime } from "luxon";
 
 export default {
+  components: {
+    BaseButton
+  },
   data() {
     return {
       cigsPerDay: "",
@@ -81,15 +85,6 @@ export default {
     font-size: 1.6rem;
     font-weight: 600;
     color: $color-primary;
-    border: none;
-    outline: none;
-  }
-
-  &__btn {
-    padding: 1rem;
-    font-size: 1.6rem;
-    background-color: $color-secondary;
-    color: #fff;
     border: none;
     outline: none;
   }

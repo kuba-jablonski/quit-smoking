@@ -1,13 +1,52 @@
 <template>
-  <button type="button" class="btn">
+  <button :type="type" :class="btnClasses">
     <slot/>
   </button>
 </template>
 
+<script>
+export default {
+  props: {
+    fullWidth: {
+      type: Boolean,
+      default: false
+    },
+    type: {
+      type: String,
+      default: "button"
+    },
+    color: {
+      type: String
+    }
+  },
+  data() {
+    return {
+      btnClasses: {
+        btn: true,
+        "btn--fullwidth": this.fullWidth,
+        "btn--green": this.color === "green",
+        "btn--red": this.color === "red"
+      }
+    };
+  }
+};
+</script>
+
+
 <style lang="scss">
+@mixin btnColor($color) {
+  color: $color;
+  background-color: lighten($color, 33%);
+
+  &:focus,
+  &:hover {
+    background-color: lighten($color, 25%);
+  }
+}
+
 .btn {
   font-family: $font-base;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 600;
   display: inline-block;
   height: 3.6rem;
@@ -22,12 +61,20 @@
   user-select: none;
   border: 0;
   border-radius: 2px;
-  transition: all 0.2s;
-  // background: $md-btn-color;
+  transition: all 0.3s;
   color: #fff;
   outline: 0;
-  &:focus {
-    // background: darken($md-btn-color, 12%)
+
+  &--fullwidth {
+    width: 100%;
+  }
+
+  &--green {
+    @include btnColor($color-green);
+  }
+
+  &--red {
+    @include btnColor($color-red);
   }
 }
 </style>
