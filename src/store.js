@@ -65,7 +65,7 @@ export default new Vuex.Store({
       return Math.floor(timeDiff / cigInterval);
     },
     moneySaved(state, { costPerCig, cigsNotSmoked }) {
-      return cigsNotSmoked * costPerCig;
+      return (cigsNotSmoked * costPerCig).toFixed(2);
     },
     settingsSet({ quitDate, cigsPerDay, cigsInPack, packCost }) {
       return quitDate && cigsPerDay && cigsInPack && packCost;
