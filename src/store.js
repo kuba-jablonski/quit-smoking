@@ -68,7 +68,7 @@ export default new Vuex.Store({
       return (cigsNotSmoked * costPerCig).toFixed(2);
     },
     settingsSet({ quitDate, cigsPerDay, cigsInPack, packCost }) {
-      return quitDate && cigsPerDay && cigsInPack && packCost;
+      return !!quitDate && !!cigsPerDay && !!cigsInPack && !!packCost;
     }
   }
 });

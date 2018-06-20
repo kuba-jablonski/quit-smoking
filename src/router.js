@@ -7,14 +7,12 @@ import store from "./store";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: "/",
       name: "home",
-      component: Home,
-      beforeEnter: (to, from, next) =>
-        store.getters.settingsSet ? next() : next("/settings")
+      component: Home
     },
     {
       path: "/settings",
@@ -28,3 +26,13 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.name === "setup") {
+    next();
+  } else {
+    store.getters.settingsSet ? next() : next("/setup");
+  }
+});
+
+export default router;
