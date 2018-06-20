@@ -1,17 +1,17 @@
 <template>
-    <transition name="slide-half">
-  <div class="home">
-    <nav class="nav">
-      <div class="nav__brand">Quiter!</div>
-      <router-link to="/settings">
-        <settings-icon class="nav__btn"/>
-      </router-link>
-    </nav>
-    <main class="main">
-      <the-info/>
-    </main>
-  </div>
-</transition>
+  <transition name="slide-half">
+    <div class="home">
+      <nav class="nav">
+        <div class="nav__brand">Quiter!</div>
+        <router-link to="/settings">
+          <settings-icon class="nav__btn"/>
+        </router-link>
+      </nav>
+      <main class="main">
+        <the-info/>
+      </main>
+    </div>
+  </transition>
 </template>
 
 <script>
