@@ -8,6 +8,7 @@
 @import "css/base";
 @import "css/typography";
 @import "css/utilities";
+@import "css/animations";
 
 #app {
   min-height: 100vh;

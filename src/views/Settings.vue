@@ -1,22 +1,22 @@
 <template>
-<transition name="slide">
-  <div class="settings">
-    <nav class="nav">
-      <router-link to="/" class="nav__btn">
-        <arrow-back class="nav__icon"/>
-        Settings
-      </router-link>
-    </nav>
-    <main class="main">
-      <the-form @onSubmit="saveSettings($event)"/>
-      <the-modal :open="modal.open">
-        <p class="mb-hg">{{ modal.text }}</p>
-        <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
-        <base-button color="red" @click.native="modal.open = false">No</base-button>
-      </the-modal>
-    </main>
-  </div>
-</transition>
+  <transition name="slide">
+    <div class="settings">
+      <nav class="nav">
+        <router-link to="/" class="nav__btn">
+          <arrow-back class="nav__icon"/>
+          Settings
+        </router-link>
+      </nav>
+      <main class="main">
+        <the-form @onSubmit="saveSettings($event)"/>
+        <the-modal :open="modal.open">
+          <p class="mb-hg">{{ modal.text }}</p>
+          <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
+          <base-button color="red" @click.native="modal.open = false">No</base-button>
+        </the-modal>
+      </main>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -95,16 +95,5 @@ export default {
 .main {
   background-color: $color-grey-light-1;
   padding: 1rem;
-}
-
-.slide-enter-active {
-  transition: transform 0.3s ease-out;
-}
-.slide-leave-active {
-  transition: transform 0.3s ease-out;
-}
-.slide-enter,
-.slide-leave-to {
-  transform: translateX(100%);
 }
 </style>

@@ -1,8 +1,10 @@
 <template>
-  <div class="setup">
-    <p>Please fill out the form to get started.</p>
-    <the-form  @onSubmit="saveSettings($event)"/>
-  </div>
+  <transition name="slide">
+    <div class="setup">
+      <p>Please fill out the form to get started.</p>
+      <the-form  @onSubmit="saveSettings($event)"/>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -15,6 +17,7 @@ export default {
   methods: {
     saveSettings(settings) {
       this.$store.dispatch("saveSettings", settings);
+      this.$router.push("/");
     }
   }
 };
