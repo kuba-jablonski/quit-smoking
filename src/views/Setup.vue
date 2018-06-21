@@ -15,23 +15,35 @@
 import TheForm from "@/components/Settings/TheForm";
 import Congrats from "@/components/Setup/Congrats";
 import Stepper from "@/components/Setup/Stepper";
+import TheUser from "@/components/Setup/TheUser";
 
 export default {
   components: {
     TheForm,
     Congrats,
-    Stepper
+    Stepper,
+    TheUser
   },
   data() {
     return {
-      currentComponent: "TheForm",
       step: 1
     };
+  },
+  computed: {
+    currentComponent() {
+      switch (this.step) {
+        case 1:
+          return "TheForm";
+        case 2:
+          return "TheUser";
+        case 3:
+          return "Congrats";
+      }
+    }
   },
   methods: {
     saveSettings(settings) {
       this.$store.dispatch("saveSettings", settings);
-      this.currentComponent = "Congrats";
       this.step++;
     }
   }
