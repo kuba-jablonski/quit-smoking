@@ -9,12 +9,12 @@
       </nav>
       <main class="main">
         <the-form @onSubmit="saveSettings($event)"/>
-        <the-modal :open="modal.open">
-          <p class="mb-hg">{{ modal.text }}</p>
-          <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
-          <base-button color="red" @click.native="modal.open = false">No</base-button>
-        </the-modal>
       </main>
+      <base-modal :open="modal.open">
+        <p class="mb-hg">{{ modal.text }}</p>
+        <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
+        <base-button color="red" @click.native="modal.open = false">No</base-button>
+      </base-modal>
     </div>
   </transition>
 </template>
@@ -22,14 +22,14 @@
 <script>
 import ArrowBack from "@/assets/svg/arrow_back.svg";
 import TheForm from "@/components/Settings/TheForm";
-import TheModal from "@/components/Settings/TheModal";
+import BaseModal from "@/components/Base/BaseModal";
 import BaseButton from "@/components/Base/BaseButton";
 
 export default {
   components: {
     ArrowBack,
     TheForm,
-    TheModal,
+    BaseModal,
     BaseButton
   },
   data() {
