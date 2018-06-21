@@ -9,10 +9,10 @@
     <base-input v-model.number="packCost" type="number" min="0" max="100" required step="0.01" id="pack-price">
       What was the price of a pack?
     </base-input>
-    <div class="form__control">
-      <label class="form__label">When did you quit smoking?</label>
-      <datetime type="datetime" :week-start="1" v-model="quitDate"></datetime>
-    </div>
+    <base-input>
+      When did you quit smoking?
+      <datetime slot="control" type="datetime" :week-start="1" v-model="quitDate"></datetime>
+    </base-input>
     <base-button class="mt-md" type="submit" color="green" fullWidth>Save</base-button>
   </form>
 </template>

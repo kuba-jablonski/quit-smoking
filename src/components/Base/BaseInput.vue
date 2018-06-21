@@ -3,7 +3,9 @@
     <label class="label" :for="id">
       <slot/>
     </label>
-    <input v-bind="$attrs" class="input" :id="id" :value="value" @input="$emit('input', $event.target.value)">
+    <slot name="control">
+      <input v-bind="$attrs" class="input" :id="id" :value="value" @input="$emit('input', $event.target.value)">
+    </slot>
   </div>
 </template>
 
