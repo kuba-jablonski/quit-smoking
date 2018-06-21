@@ -1,17 +1,14 @@
 <template>
   <form @submit.prevent="onSubmit" class="form">
-    <div class="form__control">
-      <label class="form__label" for="cig-count">How many daily cigarettes did you smoke?</label>
-      <input v-model.number="cigsPerDay" type="number" min="1" max="100" required class="form__input" id="cig-count">
-    </div>
-    <div class="form__control">
-      <label class="form__label" for="pack-count">How many cigarettes were in a pack?</label>
-      <input v-model.number="cigsInPack" type="number" min="1" max="100" required class="form__input" id="pack-count">
-    </div>
-    <div class="form__control">
-      <label class="form__label" for="pack-price">What was the price of a pack?</label>
-      <input v-model.number="packCost" type="number" min="0" max="100" required step="0.01" class="form__input" id="pack-price">
-    </div>
+    <base-input v-model.number="cigsPerDay" id="cig-count" required min="1" type="number" max="100">
+      How many daily cigarettes did you smoke?
+    </base-input>
+    <base-input v-model.number="cigsInPack" type="number" min="1" max="100" required id="pack-count">
+      How many cigarettes were in a pack?
+    </base-input>
+    <base-input v-model.number="packCost" type="number" min="0" max="100" required step="0.01" id="pack-price">
+      What was the price of a pack?
+    </base-input>
     <div class="form__control">
       <label class="form__label">When did you quit smoking?</label>
       <datetime type="datetime" :week-start="1" v-model="quitDate"></datetime>
@@ -22,11 +19,13 @@
 
 <script>
 import BaseButton from "@/components/Base/BaseButton";
+import BaseInput from "@/components/Base/BaseInput";
 import { DateTime } from "luxon";
 
 export default {
   components: {
-    BaseButton
+    BaseButton,
+    BaseInput
   },
   data() {
     return {
