@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onSubmit" class="form">
+  <base-form @submit="onSubmit">
     <base-input v-model.number="cigsPerDay" id="cig-count" required min="1" type="number" max="100">
       How many daily cigarettes did you smoke?
     </base-input>
@@ -14,18 +14,20 @@
       <datetime slot="control" type="datetime" :week-start="1" v-model="quitDate"></datetime>
     </base-input>
     <base-button class="mt-md" type="submit" color="green" fullWidth>Save</base-button>
-  </form>
+  </base-form>
 </template>
 
 <script>
 import BaseButton from "@/components/Base/BaseButton";
 import BaseInput from "@/components/Base/BaseInput";
+import BaseForm from "@/components/Base/BaseForm";
 import { DateTime } from "luxon";
 
 export default {
   components: {
     BaseButton,
-    BaseInput
+    BaseInput,
+    BaseForm
   },
   data() {
     return {
@@ -57,59 +59,3 @@ export default {
   }
 };
 </script>
-
-
-
-<style lang="scss" scoped>
-.form {
-  display: grid;
-  grid-gap: 1rem;
-
-  &__control {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  &__label {
-    background-color: $color-font;
-    color: #fff;
-    font-size: 1.4rem;
-    padding: 0.5rem;
-  }
-
-  &__input {
-    text-align: inherit;
-    padding: 0.5rem;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: $color-primary;
-    border: none;
-    outline: none;
-  }
-}
-</style>
-
-<style lang="scss">
-.vdatetime {
-  margin: 0;
-  padding: 0;
-}
-
-.vdatetime-input {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  border: none;
-  margin: 0;
-  padding: 0.5rem;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: $color-primary;
-  text-align: inherit;
-}
-
-.vdatetime-popup {
-  text-align: left;
-}
-</style>
