@@ -13,7 +13,15 @@
           'stepper__icon--active': step === 1,
           'stepper__icon--complete': step > 1
         }"
-      >1</div>
+      >
+        <icon-equalizer 
+          :class="{
+            'stepper__svg': true,
+            'stepper__svg--active': step === 1,
+            'stepper__svg--complete': step > 1
+          }"
+        />
+      </div>
     </div>
     <div
       :class="{
@@ -28,13 +36,28 @@
           'stepper__icon--active': step === 2,
           'stepper__icon--complete': step > 2
         }"
-      >2</div>
+      >
+        <icon-user 
+          :class="{
+            'stepper__svg': true,
+            'stepper__svg--active': step === 2,
+            'stepper__svg--complete': step > 2
+          }"
+        />      
+      </div>
     </div>
   </div> 
 </template>
 
 <script>
+import IconEqualizer from "@/assets/svg/equalizer.svg";
+import IconUser from "@/assets/svg/user.svg";
+
 export default {
+  components: {
+    IconEqualizer,
+    IconUser
+  },
   props: ["step"]
 };
 </script>
@@ -42,7 +65,6 @@ export default {
 
 <style lang="scss" scoped>
 .stepper {
-  background-color: orangered;
   display: flex;
   height: 5rem;
 
@@ -94,8 +116,8 @@ export default {
 
   &__icon {
     background-color: #fff;
-    width: 3rem;
-    height: 3rem;
+    width: 4.5rem;
+    height: 4.5rem;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -110,6 +132,23 @@ export default {
 
     &--active {
       border: 2px solid $color-green;
+    }
+  }
+
+  &__svg {
+    display: block;
+    height: 2.2rem;
+    width: 2.2rem;
+    fill: $color-font;
+    z-index: 2;
+    transition: all 0.3s;
+
+    &--complete {
+      fill: #fff;
+    }
+
+    &--active {
+      fill: $color-green;
     }
   }
 }
