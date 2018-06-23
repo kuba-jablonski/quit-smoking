@@ -1,13 +1,10 @@
 <template>
-  <div class="user">
-    <form class="form">
-      <div class="form__control">
-        <label class="form__label">When did you quit smoking?</label>
-        <datetime type="datetime" :week-start="1" v-model="quitDate"></datetime>
-      </div>
-      <div class="form__control">
-        <label class="form__label">When did you quit smoking?</label>
-        <div v-if="!imgSrc" class="dropbox">
+  <div class="user" @submit.prevent="$emit('onSubmitUser')">
+    <base-form>
+      <base-input>Choose a username.</base-input>
+      <base-input>
+        Upload a profile image.
+        <div slot="control" v-if="!imgSrc" class="dropbox">
           <input
             type="file"
             @change="onFileChange($event.target.files[0])"
@@ -18,27 +15,54 @@
             Drag your file(s) here to begin<br> or click to browse
           </p>
         </div>
-        <div class="image-container">
-          <img @load="imgLoaded" class="image" :src="imgSrc" alt="">
+        <div slot="control" v-else class="dropbox-full">
+          <div class="image-container">
+            <img @load="imgLoaded" class="image" :src="imgSrc" alt="">
+          </div>
+          <div class="image-details">
+            <p>{{ filename }}</p>
+            <base-button color="green">
+              <span>Change Image</span>
+              <input
+                type="file"
+                @change="onFileChange($event.target.files[0])"
+                accept="image/*"
+                class="input-file"
+              >
+            </base-button>
+          </div>
         </div>
-      </div>
-    </form>
+      </base-input>
+      <base-button class="mt-md" type="submit" color="green" fullWidth>Save</base-button>
+    </base-form>
   </div>
 </template>
 
 <script>
+import BaseForm from "@/components/Base/BaseForm";
+import BaseInput from "@/components/Base/BaseInput";
+import BaseButton from "@/components/Base/BaseButton";
+
 export default {
+  components: {
+    BaseForm,
+    BaseInput,
+    BaseButton
+  },
   data() {
     return {
+      filename: "",
       imgSrc: ""
     };
   },
   methods: {
     onFileChange(file) {
+      console.log(file);
       var reader = new FileReader();
 
       reader.onload = e => {
         this.imgSrc = e.target.result;
+        this.filename = file.name;
       };
       reader.readAsDataURL(file);
     },
@@ -69,8 +93,10 @@ export default {
 .input-file {
   opacity: 0; /* invisible but it's there! */
   width: 100%;
-  height: 200px;
+  height: 100%;
   position: absolute;
+  top: 0;
+  left: 0;
   cursor: pointer;
 }
 
@@ -84,49 +110,46 @@ export default {
   padding: 50px 0;
 }
 
+.dropbox-full {
+  // outline: 2px dashed grey; /* the dash box */
+  // outline-offset: -10px;
+  // background: lightcyan;
+  // color: dimgray;
+  // padding: 10px 10px;
+  // height: 200px; /* minimum height */
+  // position: relative;
+  // cursor: pointer;
+  background: #fff;
+  display: flex;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
+}
+
 .image-container {
-  outline: 2px dashed grey; /* the dash box */
-  outline-offset: -10px;
-  background: lightcyan;
-  color: dimgray;
-  padding: 10px 10px;
-  height: 200px; /* minimum height */
-  position: relative;
-  cursor: pointer;
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
 }
 
 .image {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 30rem;
+  height: 30rem;
   object-fit: cover;
+  margin: 2rem;
+  outline: 2px dashed grey; /* the dash box */
+  // outline-offset: 10px;
 }
 
-.form {
-  display: grid;
-  grid-gap: 1rem;
-
-  &__control {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  &__label {
-    background-color: $color-font;
-    color: #fff;
-    font-size: 1.4rem;
-    padding: 0.5rem;
-  }
-
-  &__input {
-    text-align: inherit;
-    padding: 0.5rem;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: $color-primary;
-    border: none;
-    outline: none;
-  }
+.image-details {
+  flex: 1 1;
+  // width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
 }
 </style>

@@ -4,7 +4,7 @@
       <stepper :step="step"/>
       <main class="main">
         <transition name="slide-right-left" mode="out-in">
-          <component :is="currentComponent"  @onSubmit="saveSettings($event)"/>
+          <component :is="currentComponent"  @onSubmit="saveSettings($event)" @onSubmitUser="saveUser($event)"/>
         </transition>
       </main>
     </div>
@@ -44,6 +44,9 @@ export default {
   methods: {
     saveSettings(settings) {
       this.$store.dispatch("saveSettings", settings);
+      this.step++;
+    },
+    saveUser() {
       this.step++;
     }
   }

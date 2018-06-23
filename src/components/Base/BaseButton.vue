@@ -33,7 +33,7 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 @mixin btnColor($color) {
   color: $color;
   background-color: lighten($color, 33%);
@@ -45,6 +45,7 @@ export default {
 }
 
 .btn {
+  position: relative;
   font-family: $font-base;
   font-size: 1.6rem;
   font-weight: 600;
