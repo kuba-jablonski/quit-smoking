@@ -13,6 +13,7 @@
     "velocity-animate": "^1.5.1",
     "vue": "^2.5.16",
     "vue-datetime": "^1.0.0-beta.3",
+    "vue-radial-progress": "^0.2.10",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "weekstart": "^1.0.0"
