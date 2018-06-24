@@ -33,7 +33,11 @@
           </div>
         </div>
       </base-input>
-      <base-button class="mt-md" type="submit" color="green" fullWidth>Save</base-button>
+      <div class="form-btns mt-md">
+        <base-button class="mr-auto">Back</base-button>
+        <base-button class="mr-md">Skip</base-button>
+        <base-button type="submit" color="primary">Save</base-button>
+      </div>
     </base-form>
   </div>
 </template>
@@ -151,5 +155,9 @@ export default {
   justify-content: center;
   align-items: center;
   padding-bottom: 2rem;
+}
+
+.form-btns {
+  display: flex;
 }
 </style>

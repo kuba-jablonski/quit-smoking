@@ -65,6 +65,7 @@ export default {
   border-radius: 2px;
   transition: all 0.3s;
   color: #fff;
+  background-color: $color-grey-light-2;
   outline: 0;
 
   &--fullwidth {
