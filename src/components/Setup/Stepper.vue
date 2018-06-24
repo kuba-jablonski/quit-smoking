@@ -80,7 +80,7 @@ export default {
       left: 0;
       content: "";
       width: 50%;
-      height: 2px;
+      height: 3px;
       display: block;
       background-color: #fff;
       transition: all 0.3s;
@@ -91,7 +91,7 @@ export default {
       right: 0;
       content: "";
       width: 50%;
-      height: 2px;
+      height: 3px;
       display: block;
       background-color: #fff;
       transition: all 0.3s;
@@ -99,17 +99,17 @@ export default {
 
     &--complete {
       &::before {
-        background-color: $color-green;
+        background-color: $color-primary;
       }
 
       &::after {
-        background-color: $color-green;
+        background-color: $color-primary;
       }
     }
 
     &--active {
       &::before {
-        background-color: $color-green;
+        background-color: $color-primary;
       }
     }
   }
@@ -127,11 +127,11 @@ export default {
     transition: all 0.3s;
 
     &--complete {
-      background-color: $color-green;
+      background-color: $color-primary;
     }
 
     &--active {
-      border: 2px solid $color-green;
+      border: 2px solid $color-primary;
     }
   }
 
@@ -148,7 +148,7 @@ export default {
     }
 
     &--active {
-      fill: $color-green;
+      fill: $color-primary;
     }
   }
 }
