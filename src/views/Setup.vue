@@ -56,8 +56,8 @@ export default {
 
 <style lang="scss" scoped>
 .setup {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   background-color: $color-grey-light-1;
   position: absolute;
   z-index: 1;

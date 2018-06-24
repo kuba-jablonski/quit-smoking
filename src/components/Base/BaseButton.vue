@@ -24,6 +24,7 @@ export default {
       btnClasses: {
         btn: true,
         "btn--fullwidth": this.fullWidth,
+        "btn--primary": this.color === "primary",
         "btn--green": this.color === "green",
         "btn--red": this.color === "red"
       }
@@ -68,6 +69,10 @@ export default {
 
   &--fullwidth {
     width: 100%;
+  }
+
+  &--primary {
+    @include btnColor($color-primary);
   }
 
   &--green {

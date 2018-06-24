@@ -20,8 +20,8 @@
             <img @load="imgLoaded" class="image" :src="imgSrc" alt="">
           </div>
           <div class="image-details">
-            <p>{{ filename }}</p>
-            <base-button color="green">
+            <p class="c-primary bold mb-md">{{ filename }}</p>
+            <base-button color="primary">
               <span>Change Image</span>
               <input
                 type="file"
