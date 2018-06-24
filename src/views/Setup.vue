@@ -58,7 +58,7 @@ export default {
 .setup {
   width: 100%;
   height: 100%;
-  background-color: $color-lightblue;
+  background-color: $color-grey-light-1;
   position: absolute;
   z-index: 1;
 }

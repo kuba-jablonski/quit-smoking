@@ -66,7 +66,7 @@ export default {
 <style lang="scss" scoped>
 .stepper {
   display: flex;
-  height: 5rem;
+  height: 8rem;
 
   &__tab {
     flex: 1 1;
