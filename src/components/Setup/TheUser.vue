@@ -28,19 +28,19 @@ export default {
   data() {
     return {
       username: "",
-      fileName: "",
+      filename: "",
       fileSrc: ""
     };
   },
   methods: {
     onFileChange(event) {
-      this.fileName = event.fileName;
+      this.filename = event.filename;
       this.fileSrc = event.fileSrc;
     },
     onSubmit() {
       this.$emit("onSubmitUser", {
         username: this.username,
-        fileName: this.fileName,
+        filename: this.filename,
         fileSrc: this.fileSrc
       });
     }

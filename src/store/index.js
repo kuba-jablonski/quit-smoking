@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import user from './user';
 import { DateTime, Settings } from "luxon";
 
 Settings.defaultLocale = "en";
@@ -70,5 +71,6 @@ export default new Vuex.Store({
     settingsSet({ quitDate, cigsPerDay, cigsInPack, packCost }) {
       return !!quitDate && !!cigsPerDay && !!cigsInPack && !!packCost;
     }
-  }
+  },
+  modules: { user }
 });

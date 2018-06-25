@@ -14,7 +14,9 @@ Vue.config.productionTip = false;
 store.dispatch("trackTime");
 
 const settings = JSON.parse(localStorage.getItem("settings"));
+const user = JSON.parse(localStorage.getItem("user"));
 if (settings) store.dispatch("saveSettings", settings);
+if (user) store.dispatch("user/setUser", user);
 
 new Vue({
   router,

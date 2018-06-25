@@ -17,7 +17,7 @@
         <img class="image" :src="fileSrc" alt="">
       </div>
       <div class="image-details">
-        <p class="c-primary bold mb-md">{{ fileName }}</p>
+        <p class="c-primary bold mb-md">{{ filename }}</p>
         <base-button>
           <span>Change Image</span>
           <input
@@ -43,7 +43,7 @@ export default {
   },
   data() {
     return {
-      fileName: "",
+      filename: "",
       fileSrc: "",
       msg: "Drag your file here\n or click to begin"
     };
@@ -54,10 +54,10 @@ export default {
 
       reader.onload = e => {
         this.fileSrc = e.target.result;
-        this.fileName = file.name;
+        this.filename = file.name;
 
         this.$emit("onFileChange", {
-          fileName: this.fileName,
+          filename: this.filename,
           fileSrc: this.fileSrc
         });
       };

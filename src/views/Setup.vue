@@ -52,6 +52,7 @@ export default {
       } catch (e) {
         console.log("Error!", e);
       } finally {
+        this.$store.dispatch("user/setUser", user);
         this.step++;
       }
     }
