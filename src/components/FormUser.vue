@@ -1,7 +1,7 @@
 <template>
   <base-form @submit="onSubmit">
     <base-input v-model="username" type="text" max="10" required>Choose a username.</base-input>
-    <the-dropbox @onFileChange="onFileChange($event)"/>
+    <form-user-dropbox @onFileChange="onFileChange($event)"/>
     <div class="form-btns mt-md">
       <slot name="form-user-buttons">
         <base-button type="submit" color="primary" fullWidth>Save</base-button>
@@ -14,14 +14,14 @@
 import BaseForm from "@/components/Base/BaseForm";
 import BaseInput from "@/components/Base/BaseInput";
 import BaseButton from "@/components/Base/BaseButton";
-import TheDropbox from "@/components/TheDropbox";
+import FormUserDropbox from "@/components/FormUserDropbox";
 
 export default {
   components: {
     BaseForm,
     BaseInput,
     BaseButton,
-    TheDropbox
+    FormUserDropbox
   },
   data() {
     return {

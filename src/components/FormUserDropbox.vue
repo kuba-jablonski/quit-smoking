@@ -9,14 +9,14 @@
         class="input-file"
       >
       <p>
-        Drag your file<br> or click to browse
+        Drag your file here<br> or click to browse
       </p>
     </div>
     <div slot="control" v-else class="dropbox-full">
-      <div class="image-container">
-        <img class="image" :src="fileSrc" alt="">
+      <div class="dropbox-full__image-container">
+        <img class="dropbox-full__image" :src="fileSrc" alt="">
       </div>
-      <div class="image-details">
+      <div class="dropbox-full__image-details">
         <p class="c-primary bold mb-md">{{ filename }}</p>
         <base-button>
           <span>Change Image</span>
@@ -69,18 +69,20 @@ export default {
 
 <style lang="scss" scoped>
 .dropbox {
-  outline: 2px dashed grey; /* the dash box */
-  outline-offset: -10px;
+  outline: 2px dashed grey;
+  outline-offset: -1rem;
   background: #fff;
-  // color: dimgray;
-  padding: 10px 10px;
-  min-height: 200px; /* minimum height */
+  padding: 1rem;
+  min-height: 20rem;
   position: relative;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input-file {
-  opacity: 0; /* invisible but it's there! */
+  opacity: 0;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -89,56 +91,36 @@ export default {
   cursor: pointer;
 }
 
-.dropbox:hover {
-  background: lightblue; /* when mouse over to the drop zone, change color */
-}
-
-.dropbox p {
-  font-size: 1.2em;
-  text-align: center;
-  padding: 50px 0;
-}
-
 .dropbox-full {
-  // outline: 2px dashed grey; /* the dash box */
-  // outline-offset: -10px;
-  // background: lightcyan;
-  // color: dimgray;
-  // padding: 10px 10px;
-  // height: 200px; /* minimum height */
-  // position: relative;
-  // cursor: pointer;
   background: #fff;
   display: flex;
 
   @media screen and (max-width: 800px) {
     flex-direction: column;
   }
-}
 
-.image-container {
-  flex: 1 1;
-  display: flex;
-  justify-content: center;
-}
+  &__image-container {
+    flex: 1 1;
+    display: flex;
+    justify-content: center;
+  }
 
-.image {
-  display: block;
-  width: 30rem;
-  height: 30rem;
-  object-fit: cover;
-  margin: 2rem;
-  outline: 2px dashed grey; /* the dash box */
-  // outline-offset: 10px;
-}
+  &__image-details {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
 
-.image-details {
-  flex: 1 1;
-  // width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 2rem;
+  &__image {
+    display: block;
+    width: 30rem;
+    height: 30rem;
+    object-fit: cover;
+    margin: 2rem;
+    outline: 2px dashed grey;
+  }
 }
 </style>
