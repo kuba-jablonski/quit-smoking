@@ -1,15 +1,13 @@
 <template>
   <transition name="slide">
     <div class="setup">
-      <stepper :step="step"/>
+      <setup-stepper :step="step"/>
       <main class="main">
         <transition name="slide-right-left" mode="out-in">
           <component
             :is="currentComponent" 
             @onSubmit="saveSettings($event)"
             @onSubmitUser="saveUser($event)"
-            @back="step--"
-            @skip="step++"
           >
             <template slot="form-user-buttons">
               <base-button @click.native="step--" class="mr-auto">Back</base-button>
@@ -26,16 +24,16 @@
 <script>
 import BaseButton from "@/components/Base/BaseButton";
 import FormSettings from "@/components/FormSettings";
-import Congrats from "@/components/Setup/Congrats";
-import Stepper from "@/components/Setup/Stepper";
+import SetupCongrats from "@/components/SetupCongrats";
+import SetupStepper from "@/components/SetupStepper";
 import FormUser from "@/components/FormUser";
 
 export default {
   components: {
     BaseButton,
     FormSettings,
-    Congrats,
-    Stepper,
+    SetupCongrats,
+    SetupStepper,
     FormUser
   },
   data() {
@@ -51,7 +49,7 @@ export default {
         case 2:
           return "FormUser";
         case 3:
-          return "Congrats";
+          return "SetupCongrats";
       }
     }
   },
