@@ -46,8 +46,14 @@ export default {
       this.$store.dispatch("saveSettings", settings);
       this.step++;
     },
-    saveUser() {
-      this.step++;
+    saveUser(user) {
+      try {
+        localStorage.setItem("user", JSON.stringify(user));
+      } catch (e) {
+        console.log("Error!", e);
+      } finally {
+        this.step++;
+      }
     }
   }
 };
