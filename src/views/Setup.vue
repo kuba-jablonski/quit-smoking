@@ -4,7 +4,13 @@
       <stepper :step="step"/>
       <main class="main">
         <transition name="slide-right-left" mode="out-in">
-          <component :is="currentComponent"  @onSubmit="saveSettings($event)" @onSubmitUser="saveUser($event)"/>
+          <component
+            :is="currentComponent" 
+            @onSubmit="saveSettings($event)"
+            @onSubmitUser="saveUser($event)"
+            @back="step--"
+            @skip="step++"
+          />
         </transition>
       </main>
     </div>

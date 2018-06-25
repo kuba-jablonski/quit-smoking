@@ -1,11 +1,11 @@
 <template>
   <div class="user" @submit.prevent="onSubmit">
     <base-form>
-      <base-input v-model="username" type="text" max="10">Choose a username.</base-input>
+      <base-input v-model="username" type="text" max="10" required>Choose a username.</base-input>
       <the-dropbox @onFileChange="onFileChange($event)"/>
       <div class="form-btns mt-md">
-        <base-button class="mr-auto">Back</base-button>
-        <base-button class="mr-md">Skip</base-button>
+        <base-button @click.native="$emit('back')" class="mr-auto">Back</base-button>
+        <base-button @click.native="$emit('skip')" class="mr-md">Skip</base-button>
         <base-button type="submit" color="primary">Save</base-button>
       </div>
     </base-form>
