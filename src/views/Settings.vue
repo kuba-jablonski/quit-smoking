@@ -8,7 +8,7 @@
         </router-link>
       </nav>
       <main class="main">
-        <the-form @onSubmit="saveSettings($event)"/>
+        <form-settings @onSubmit="saveSettings($event)"/>
       </main>
       <base-modal :open="modal.open">
         <p class="mb-hg">{{ modal.text }}</p>
@@ -21,14 +21,14 @@
 
 <script>
 import ArrowBack from "@/assets/svg/arrow_back.svg";
-import TheForm from "@/components/Settings/TheForm";
+import FormSettings from "@/components/FormSettings";
 import BaseModal from "@/components/Base/BaseModal";
 import BaseButton from "@/components/Base/BaseButton";
 
 export default {
   components: {
     ArrowBack,
-    TheForm,
+    FormSettings,
     BaseModal,
     BaseButton
   },

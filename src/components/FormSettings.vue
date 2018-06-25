@@ -13,7 +13,11 @@
       When did you quit smoking?
       <datetime slot="control" type="datetime" :week-start="1" v-model="quitDate"></datetime>
     </base-input>
-    <base-button class="mt-md" type="submit" color="green" fullWidth>Save</base-button>
+    <div class="d-flex mt-md">
+      <slot name="form-settings-buttons">
+        <base-button class="form-btn" type="submit" color="primary" fullWidth>Save</base-button>
+      </slot>
+    </div>
   </base-form>
 </template>
 

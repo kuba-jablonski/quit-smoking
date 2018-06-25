@@ -10,7 +10,13 @@
             @onSubmitUser="saveUser($event)"
             @back="step--"
             @skip="step++"
-          />
+          >
+            <template slot="form-user-buttons">
+              <base-button @click.native="step--" class="mr-auto">Back</base-button>
+              <base-button @click.native="step++" class="mr-md">Skip</base-button>
+              <base-button type="submit" color="primary">Save</base-button>
+            </template>
+          </component>
         </transition>
       </main>
     </div>
@@ -18,17 +24,19 @@
 </template>
 
 <script>
-import TheForm from "@/components/Settings/TheForm";
+import BaseButton from "@/components/Base/BaseButton";
+import FormSettings from "@/components/FormSettings";
 import Congrats from "@/components/Setup/Congrats";
 import Stepper from "@/components/Setup/Stepper";
-import TheUser from "@/components/Setup/TheUser";
+import FormUser from "@/components/FormUser";
 
 export default {
   components: {
-    TheForm,
+    BaseButton,
+    FormSettings,
     Congrats,
     Stepper,
-    TheUser
+    FormUser
   },
   data() {
     return {
@@ -39,9 +47,9 @@ export default {
     currentComponent() {
       switch (this.step) {
         case 1:
-          return "TheForm";
+          return "FormSettings";
         case 2:
-          return "TheUser";
+          return "FormUser";
         case 3:
           return "Congrats";
       }
