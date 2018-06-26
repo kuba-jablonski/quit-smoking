@@ -32,3 +32,16 @@
 .slide-right-left-leave-to {
   transform: translateX(-100%);
 }
+
+.slide-left-right-enter-active {
+  transition: transform 0.3s ease-out;
+}
+.slide-left-right-leave-active {
+  transition: transform 0.3s ease-out;
+}
+.slide-left-right-enter {
+  transform: translateX(-100%);
+}
+.slide-left-right-leave-to {
+  transform: translateX(100%);
+}

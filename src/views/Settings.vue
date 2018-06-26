@@ -9,10 +9,12 @@
       </nav>
       <settings-componentswitch v-model="currentComponent"/>
       <main class="main">
-        <component
-          :is="currentComponent"
-          @onSubmitSettings="saveSettings($event)"
-        />
+        <transition :name="transitionName" mode="out-in">
+          <component
+            :is="currentComponent"
+            @onSubmitSettings="saveSettings($event)"
+          />
+        </transition>
       </main>
       <base-modal :open="modal.open">
         <p class="mb-hg">{{ modal.text }}</p>
@@ -29,7 +31,6 @@ import FormSettings from "@/components/FormSettings";
 import FormUser from "@/components/FormUser";
 import BaseModal from "@/components/Base/BaseModal";
 import BaseButton from "@/components/Base/BaseButton";
-
 import SettingsComponentswitch from "@/components/SettingsComponentswitch";
 
 export default {
@@ -50,6 +51,13 @@ export default {
       },
       currentComponent: "FormSettings"
     };
+  },
+  computed: {
+    transitionName() {
+      return this.currentComponent === "FormSettings"
+        ? "slide-left-right"
+        : "slide-right-left";
+    }
   },
   methods: {
     saveSettings(settings) {
