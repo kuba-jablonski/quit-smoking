@@ -92,10 +92,10 @@ export default {
 
 <style lang="scss" scoped>
 .settings {
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
   display: grid;
-  grid-template-rows: 8rem 5rem 1fr;
+  grid-template-rows: 5rem 5rem 1fr;
   position: absolute;
   z-index: 1;
   background-color: $color-grey-light-1;

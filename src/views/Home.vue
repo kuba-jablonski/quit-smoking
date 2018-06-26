@@ -32,7 +32,7 @@ export default {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 8rem 1fr;
+  grid-template-rows: 5rem 1fr;
   position: absolute;
 }
 
