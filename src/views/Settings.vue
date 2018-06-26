@@ -7,8 +7,12 @@
           Settings
         </router-link>
       </nav>
+      <settings-componentswitch v-model="currentComponent"/>
       <main class="main">
-        <form-settings @onSubmit="saveSettings($event)"/>
+        <component
+          :is="currentComponent"
+          @onSubmitSettings="saveSettings($event)"
+        />
       </main>
       <base-modal :open="modal.open">
         <p class="mb-hg">{{ modal.text }}</p>
@@ -22,15 +26,20 @@
 <script>
 import ArrowBack from "@/assets/svg/arrow_back.svg";
 import FormSettings from "@/components/FormSettings";
+import FormUser from "@/components/FormUser";
 import BaseModal from "@/components/Base/BaseModal";
 import BaseButton from "@/components/Base/BaseButton";
+
+import SettingsComponentswitch from "@/components/SettingsComponentswitch";
 
 export default {
   components: {
     ArrowBack,
     FormSettings,
+    FormUser,
     BaseModal,
-    BaseButton
+    BaseButton,
+    SettingsComponentswitch
   },
   data() {
     return {
@@ -38,7 +47,8 @@ export default {
         open: false,
         text: "",
         onConfirm: null
-      }
+      },
+      currentComponent: "FormSettings"
     };
   },
   methods: {
@@ -63,9 +73,10 @@ export default {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 8rem 1fr;
+  grid-template-rows: 8rem 5rem 1fr;
   position: absolute;
   z-index: 1;
+  background-color: $color-grey-light-1;
 }
 
 .nav {
@@ -93,7 +104,6 @@ export default {
 }
 
 .main {
-  background-color: $color-grey-light-1;
   padding: 1rem;
 }
 </style>

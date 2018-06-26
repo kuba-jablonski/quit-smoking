@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import user from './user';
+import user from "./user";
 import { DateTime, Settings } from "luxon";
 
 Settings.defaultLocale = "en";

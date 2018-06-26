@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$emit("onSubmit", {
+      this.$emit("onSubmitSettings", {
         cigsPerDay: this.cigsPerDay,
         cigsInPack: this.cigsInPack,
         packCost: this.packCost,

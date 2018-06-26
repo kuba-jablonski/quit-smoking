@@ -6,7 +6,7 @@
         <transition name="slide-right-left" mode="out-in">
           <component
             :is="currentComponent" 
-            @onSubmit="saveSettings($event)"
+            @onSubmitSettings="saveSettings($event)"
             @onSubmitUser="saveUser($event)"
           >
             <template slot="form-user-buttons">
