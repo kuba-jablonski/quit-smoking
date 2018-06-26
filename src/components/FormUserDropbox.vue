@@ -33,14 +33,7 @@
 </template>
 
 <script>
-import BaseInput from "@/components/Base/BaseInput";
-import BaseButton from "@/components/Base/BaseButton";
-
 export default {
-  components: {
-    BaseInput,
-    BaseButton
-  },
   props: ["filename", "fileSrc"],
   data() {
     return {

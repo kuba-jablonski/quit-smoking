@@ -22,17 +22,9 @@
 </template>
 
 <script>
-import BaseButton from "@/components/Base/BaseButton";
-import BaseInput from "@/components/Base/BaseInput";
-import BaseForm from "@/components/Base/BaseForm";
 import { DateTime } from "luxon";
 
 export default {
-  components: {
-    BaseButton,
-    BaseInput,
-    BaseForm
-  },
   data() {
     return {
       cigsPerDay: "",

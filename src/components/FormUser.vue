@@ -15,16 +15,10 @@
 </template>
 
 <script>
-import BaseForm from "@/components/Base/BaseForm";
-import BaseInput from "@/components/Base/BaseInput";
-import BaseButton from "@/components/Base/BaseButton";
 import FormUserDropbox from "@/components/FormUserDropbox";
 
 export default {
   components: {
-    BaseForm,
-    BaseInput,
-    BaseButton,
     FormUserDropbox
   },
   data() {

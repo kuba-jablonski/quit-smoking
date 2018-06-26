@@ -3,9 +3,9 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
-
 import Datetime from "vue-datetime";
 import "vue-datetime/dist/vue-datetime.css";
+import "@/components/_globals";
 
 Vue.use(Datetime);
 

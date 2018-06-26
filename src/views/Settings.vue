@@ -30,8 +30,6 @@
 import ArrowBack from "@/assets/svg/arrow_back.svg";
 import FormSettings from "@/components/FormSettings";
 import FormUser from "@/components/FormUser";
-import BaseModal from "@/components/Base/BaseModal";
-import BaseButton from "@/components/Base/BaseButton";
 import SettingsComponentswitch from "@/components/SettingsComponentswitch";
 
 export default {
@@ -39,8 +37,6 @@ export default {
     ArrowBack,
     FormSettings,
     FormUser,
-    BaseModal,
-    BaseButton,
     SettingsComponentswitch
   },
   data() {

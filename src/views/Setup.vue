@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import BaseButton from "@/components/Base/BaseButton";
 import FormSettings from "@/components/FormSettings";
 import SetupCongrats from "@/components/SetupCongrats";
 import SetupStepper from "@/components/SetupStepper";
@@ -30,7 +29,6 @@ import FormUser from "@/components/FormUser";
 
 export default {
   components: {
-    BaseButton,
     FormSettings,
     SetupCongrats,
     SetupStepper,
