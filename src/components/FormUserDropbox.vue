@@ -41,24 +41,20 @@ export default {
     BaseInput,
     BaseButton
   },
+  props: ["filename", "fileSrc"],
   data() {
     return {
-      filename: "",
-      fileSrc: "",
       msg: "Drag your file here\n or click to begin"
     };
   },
   methods: {
     onFileChange(file) {
-      var reader = new FileReader();
+      const reader = new FileReader();
 
       reader.onload = e => {
-        this.fileSrc = e.target.result;
-        this.filename = file.name;
-
         this.$emit("onFileChange", {
-          filename: this.filename,
-          fileSrc: this.fileSrc
+          filename: file.name,
+          fileSrc: e.target.result
         });
       };
       reader.readAsDataURL(file);

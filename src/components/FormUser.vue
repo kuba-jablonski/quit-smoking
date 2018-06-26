@@ -1,7 +1,11 @@
 <template>
   <base-form @submit="onSubmit">
     <base-input v-model="username" type="text" max="10" required>Choose a username.</base-input>
-    <form-user-dropbox @onFileChange="onFileChange($event)"/>
+    <form-user-dropbox
+      :filename="filename"
+      :file-src="fileSrc"
+      @onFileChange="onFileChange($event)"
+    />
     <div class="form-btns mt-md">
       <slot name="form-user-buttons">
         <base-button type="submit" color="primary" fullWidth>Save</base-button>
