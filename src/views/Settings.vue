@@ -13,6 +13,7 @@
           <component
             :is="currentComponent"
             @onSubmitSettings="saveSettings($event)"
+            @onSubmitUser="saveUser($event)"
           />
         </transition>
       </main>
@@ -62,13 +63,30 @@ export default {
   methods: {
     saveSettings(settings) {
       this.modal.open = true;
-      this.modal.text = "Are you are you want to change your settings?";
+      this.modal.text = "Are you sure you want to change your settings?";
       this.modal.onConfirm = () => {
         this.$store.dispatch("saveSettings", settings);
         this.modal.open = false;
         setTimeout(() => {
           this.$router.push("/");
         }, 300);
+      };
+    },
+    saveUser(user) {
+      this.modal.open = true;
+      this.modal.text = "Are you sure you want to change your user info?";
+      this.modal.onConfirm = () => {
+        try {
+          localStorage.setItem("user", JSON.stringify(user));
+        } catch (e) {
+          console.log("Error!", e);
+        } finally {
+          this.$store.dispatch("user/setUser", user);
+          this.modal.open = false;
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 300);
+        }
       };
     }
   }

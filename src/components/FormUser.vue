@@ -41,7 +41,17 @@ export default {
         filename: this.filename,
         fileSrc: this.fileSrc
       });
+    },
+    populateFormFields() {
+      console.log(this.$store.state.user);
+      const { username, filename, fileSrc } = this.$store.state.user;
+      this.username = username;
+      this.filename = filename;
+      this.fileSrc = fileSrc;
     }
+  },
+  mounted() {
+    this.populateFormFields();
   }
 };
 </script>
