@@ -3,18 +3,20 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
-
 import Datetime from "vue-datetime";
 import "vue-datetime/dist/vue-datetime.css";
+import "@/components/_globals";
 
 Vue.use(Datetime);
 
 Vue.config.productionTip = false;
 
-store.dispatch("trackTime");
+store.dispatch("core/trackTime");
 
 const settings = JSON.parse(localStorage.getItem("settings"));
-if (settings) store.dispatch("saveSettings", settings);
+const user = JSON.parse(localStorage.getItem("user"));
+if (settings) store.dispatch("core/saveSettings", settings);
+if (user) store.dispatch("user/setUser", user);
 
 new Vue({
   router,

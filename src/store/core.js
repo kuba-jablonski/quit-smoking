@@ -1,12 +1,8 @@
-import Vue from "vue";
-import Vuex from "vuex";
 import { DateTime, Settings } from "luxon";
-
 Settings.defaultLocale = "en";
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default {
+  namespaced: true,
   state: {
     quitDate: DateTime.local().toISO(),
     cigsPerDay: null,
@@ -68,7 +64,7 @@ export default new Vuex.Store({
       return (cigsNotSmoked * costPerCig).toFixed(2);
     },
     settingsSet({ quitDate, cigsPerDay, cigsInPack, packCost }) {
-      return quitDate && cigsPerDay && cigsInPack && packCost;
+      return !!quitDate && !!cigsPerDay && !!cigsInPack && !!packCost;
     }
   }
-});
+};

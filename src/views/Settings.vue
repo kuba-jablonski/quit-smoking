@@ -1,36 +1,43 @@
 <template>
-<transition name="slide">
-  <div class="settings">
-    <nav class="nav">
-      <router-link to="/" class="nav__btn">
-        <arrow-back class="nav__icon"/>
-        Settings
-      </router-link>
-    </nav>
-    <main class="main">
-      <the-form @onSubmit="saveSettings($event)"/>
-      <the-modal :open="modal.open">
-        <p class="p">{{ modal.text }}</p>
-        <base-button class="btn--confirm" @click.native="modal.onConfirm">Yes</base-button>
-        <base-button class="btn--deny" @click.native="modal.open = false">No</base-button>
-      </the-modal>
-    </main>
-  </div>
-</transition>
+  <transition name="slide">
+    <div class="settings">
+      <nav class="nav">
+        <router-link to="/" class="nav__btn">
+          <arrow-back class="nav__icon"/>
+          Settings
+        </router-link>
+      </nav>
+      <settings-componentswitch v-model="currentComponent"/>
+      <main class="main">
+        <transition :name="transitionName" mode="out-in">
+          <component
+            :is="currentComponent"
+            @onSubmitSettings="saveSettings($event)"
+            @onSubmitUser="saveUser($event)"
+          />
+        </transition>
+      </main>
+      <base-modal :open="modal.open">
+        <p class="mb-hg">{{ modal.text }}</p>
+        <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
+        <base-button color="red" @click.native="modal.open = false">No</base-button>
+      </base-modal>
+    </div>
+  </transition>
 </template>
 
 <script>
 import ArrowBack from "@/assets/svg/arrow_back.svg";
-import TheForm from "@/components/Settings/TheForm";
-import TheModal from "@/components/Settings/TheModal";
-import BaseButton from "@/components/Base/BaseButton";
+import FormSettings from "@/components/FormSettings";
+import FormUser from "@/components/FormUser";
+import SettingsComponentswitch from "@/components/SettingsComponentswitch";
 
 export default {
   components: {
     ArrowBack,
-    TheForm,
-    TheModal,
-    BaseButton
+    FormSettings,
+    FormUser,
+    SettingsComponentswitch
   },
   data() {
     return {
@@ -38,19 +45,44 @@ export default {
         open: false,
         text: "",
         onConfirm: null
-      }
+      },
+      currentComponent: "FormSettings"
     };
+  },
+  computed: {
+    transitionName() {
+      return this.currentComponent === "FormSettings"
+        ? "slide-left-right"
+        : "slide-right-left";
+    }
   },
   methods: {
     saveSettings(settings) {
       this.modal.open = true;
-      this.modal.text = "Are you are you want to change your settings?";
+      this.modal.text = "Are you sure you want to change your settings?";
       this.modal.onConfirm = () => {
-        this.$store.dispatch("saveSettings", settings);
+        this.$store.dispatch("core/saveSettings", settings);
         this.modal.open = false;
         setTimeout(() => {
           this.$router.push("/");
         }, 300);
+      };
+    },
+    saveUser(user) {
+      this.modal.open = true;
+      this.modal.text = "Are you sure you want to change your user info?";
+      this.modal.onConfirm = () => {
+        try {
+          localStorage.setItem("user", JSON.stringify(user));
+        } catch (e) {
+          console.log("Error!", e);
+        } finally {
+          this.$store.dispatch("user/setUser", user);
+          this.modal.open = false;
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 300);
+        }
       };
     }
   }
@@ -60,12 +92,13 @@ export default {
 
 <style lang="scss" scoped>
 .settings {
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
   display: grid;
-  grid-template-rows: 8rem 1fr;
+  grid-template-rows: 5rem 5rem 1fr;
   position: absolute;
   z-index: 1;
+  background-color: $color-grey-light-1;
 }
 
 .nav {
@@ -93,43 +126,6 @@ export default {
 }
 
 .main {
-  background-color: $color-grey-light-1;
   padding: 1rem;
-}
-
-.btn {
-  margin-top: 3rem;
-
-  &--confirm {
-    margin-right: 1rem;
-    color: $color-secondary;
-    background-color: lighten($color-secondary, 40%);
-
-    &:hover,
-    &:active {
-      background-color: lighten($color-secondary, 30%);
-    }
-  }
-
-  &--deny {
-    color: $color-tertiary;
-    background-color: lighten($color-tertiary, 33%);
-
-    &:hover,
-    &:active {
-      background-color: lighten($color-tertiary, 28%);
-    }
-  }
-}
-
-.slide-enter-active {
-  transition: transform 0.3s ease-out;
-}
-.slide-leave-active {
-  transition: transform 0.3s ease-out;
-}
-.slide-enter,
-.slide-leave-to {
-  transform: translateX(100%);
 }
 </style>

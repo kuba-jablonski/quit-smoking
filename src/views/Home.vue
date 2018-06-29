@@ -1,26 +1,29 @@
 <template>
-    <transition name="slide-half">
-  <div class="home">
-    <nav class="nav">
-      <div class="nav__brand">Quiter!</div>
-      <router-link to="/settings">
-        <settings-icon class="nav__btn"/>
-      </router-link>
-    </nav>
-    <main class="main">
-      <the-info/>
-    </main>
-  </div>
-</transition>
+  <transition name="slide-half">
+    <div class="home">
+      <nav class="nav">
+        <div class="nav__brand">Quiter!</div>
+        <router-link to="/settings">
+          <settings-icon class="nav__btn"/>
+        </router-link>
+      </nav>
+      <main class="main">
+        <home-user/>
+        <home-info/>
+      </main>
+    </div>
+  </transition>
 </template>
 
 <script>
-import TheInfo from "@/components/TheInfo";
+import HomeUser from "@/components/HomeUser";
+import HomeInfo from "@/components/HomeInfo";
 import SettingsIcon from "@/assets/svg/settings.svg";
 
 export default {
   components: {
-    TheInfo,
+    HomeUser,
+    HomeInfo,
     SettingsIcon
   }
 };
@@ -32,8 +35,9 @@ export default {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 8rem 1fr;
+  grid-template-rows: 5rem 1fr;
   position: absolute;
+  background-color: $color-grey-light-1;
 }
 
 .nav {
@@ -60,19 +64,9 @@ export default {
 }
 
 .main {
-  background-color: $color-grey-light-1;
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-gap: 1rem;
   padding: 1rem;
-}
-
-.slide-half-enter-active {
-  transition: transform 0.3s ease-out;
-}
-
-.slide-half-leave-active {
-  transition: transform 0.3s ease-out;
-}
-.slide-half-enter,
-.slide-half-leave-to {
-  transform: translateX(-30%);
 }
 </style>
