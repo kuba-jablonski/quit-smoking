@@ -9,7 +9,7 @@
       </nav>
       <main class="main">
         <home-user/>
-        <the-info/>
+        <home-info/>
       </main>
     </div>
   </transition>
@@ -17,13 +17,13 @@
 
 <script>
 import HomeUser from "@/components/HomeUser";
-import TheInfo from "@/components/TheInfo";
+import HomeInfo from "@/components/HomeInfo";
 import SettingsIcon from "@/assets/svg/settings.svg";
 
 export default {
   components: {
     HomeUser,
-    TheInfo,
+    HomeInfo,
     SettingsIcon
   }
 };
