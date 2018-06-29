@@ -41,7 +41,6 @@ export default {
       });
     },
     populateFormFields() {
-      console.log(this.$store.state.user);
       const { username, filename, fileSrc } = this.$store.state.user;
       this.username = username;
       this.filename = filename;
