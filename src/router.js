@@ -31,7 +31,7 @@ router.beforeEach((to, from, next) => {
   if (to.name === "setup") {
     next();
   } else {
-    store.getters.settingsSet ? next() : next("/setup");
+    store.getters["core/settingsSet"] ? next() : next("/setup");
   }
 });
 

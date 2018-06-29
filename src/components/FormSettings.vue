@@ -43,7 +43,12 @@ export default {
       });
     },
     populateFormFields() {
-      const { cigsPerDay, cigsInPack, packCost, quitDate } = this.$store.state;
+      const {
+        cigsPerDay,
+        cigsInPack,
+        packCost,
+        quitDate
+      } = this.$store.state.core;
       this.cigsPerDay = cigsPerDay;
       this.cigsInPack = cigsInPack;
       this.packCost = packCost;
@@ -51,7 +56,7 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.getters.settingsSet) this.populateFormFields();
+    if (this.$store.getters["core/settingsSet"]) this.populateFormFields();
   }
 };
 </script>

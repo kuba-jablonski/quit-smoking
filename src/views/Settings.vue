@@ -61,7 +61,7 @@ export default {
       this.modal.open = true;
       this.modal.text = "Are you sure you want to change your settings?";
       this.modal.onConfirm = () => {
-        this.$store.dispatch("saveSettings", settings);
+        this.$store.dispatch("core/saveSettings", settings);
         this.modal.open = false;
         setTimeout(() => {
           this.$router.push("/");

@@ -17,7 +17,7 @@ export default {
   computed: {
     ...mapState("user", ["username", "fileSrc"]),
     quitDate() {
-      return this.$store.getters.quitDateObject.toLocaleString({
+      return this.$store.getters["core/quitDateObject"].toLocaleString({
         year: "numeric",
         month: "long",
         day: "numeric"

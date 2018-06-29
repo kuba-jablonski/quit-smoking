@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     saveSettings(settings) {
-      this.$store.dispatch("saveSettings", settings);
+      this.$store.dispatch("core/saveSettings", settings);
       this.step++;
     },
     saveUser(user) {

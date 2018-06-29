@@ -27,7 +27,11 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["timeWithoutSmoking", "cigsNotSmoked", "moneySaved"]),
+    ...mapGetters("core", [
+      "timeWithoutSmoking",
+      "cigsNotSmoked",
+      "moneySaved"
+    ]),
     hasQuit() {
       return this.timeWithoutSmoking.minutes >= 0;
     }

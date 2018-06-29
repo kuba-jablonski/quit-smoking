@@ -11,11 +11,11 @@ Vue.use(Datetime);
 
 Vue.config.productionTip = false;
 
-store.dispatch("trackTime");
+store.dispatch("core/trackTime");
 
 const settings = JSON.parse(localStorage.getItem("settings"));
 const user = JSON.parse(localStorage.getItem("user"));
-if (settings) store.dispatch("saveSettings", settings);
+if (settings) store.dispatch("core/saveSettings", settings);
 if (user) store.dispatch("user/setUser", user);
 
 new Vue({
