@@ -8,6 +8,7 @@
         </router-link>
       </nav>
       <main class="main">
+        <home-user/>
         <the-info/>
       </main>
     </div>
@@ -15,11 +16,13 @@
 </template>
 
 <script>
+import HomeUser from "@/components/HomeUser";
 import TheInfo from "@/components/TheInfo";
 import SettingsIcon from "@/assets/svg/settings.svg";
 
 export default {
   components: {
+    HomeUser,
     TheInfo,
     SettingsIcon
   }
@@ -34,6 +37,7 @@ export default {
   display: grid;
   grid-template-rows: 5rem 1fr;
   position: absolute;
+  background-color: $color-grey-light-1;
 }
 
 .nav {
@@ -60,7 +64,9 @@ export default {
 }
 
 .main {
-  background-color: $color-grey-light-1;
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-gap: 1rem;
   padding: 1rem;
 }
 </style>
