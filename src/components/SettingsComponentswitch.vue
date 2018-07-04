@@ -28,6 +28,20 @@
         }"        
       />
     </button>
+    <button
+      @click="$emit('input', 'FormLogin')"
+      :class="{
+        'component-switch__btn': true,
+        'component-switch__btn--hoverable': value !== 'FormLogin',
+      }"
+    >
+      <icon-user
+        :class="{
+          'component-switch__icon': true,
+          'component-switch__icon--active': value === 'FormLogin',
+        }"        
+      />
+    </button>
   </nav>
 </template>
 
@@ -56,7 +70,7 @@ export default {
     outline: none;
     cursor: pointer;
 
-    &:first-child {
+    &:not(:last-child) {
       border-left: none;
       border-right: 1px solid $color-grey-light-2;
     }
