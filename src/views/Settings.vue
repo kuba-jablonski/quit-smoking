@@ -7,7 +7,7 @@
           Settings
         </router-link>
       </nav>
-      <settings-componentswitch v-model="currentComponent"/>
+      <settings-componentswitch :value="switchValue" @valueChange="onValueChange"/>
       <main class="main">
         <transition :name="transitionName" mode="out-in">
           <component
@@ -48,17 +48,31 @@ export default {
         text: "",
         onConfirm: null
       },
-      currentComponent: "FormSettings"
+      switchValue: 1,
+      switchPreviousValue: null
     };
   },
   computed: {
+    currentComponent() {
+      if (this.switchValue === 1) {
+        return "FormSettings";
+      } else if (this.switchValue === 2) {
+        return "FormUser";
+      } else {
+        return "FormLogin";
+      }
+    },
     transitionName() {
-      return this.currentComponent === "FormSettings"
+      return this.switchValue < this.switchPreviousValue
         ? "slide-left-right"
         : "slide-right-left";
     }
   },
   methods: {
+    onValueChange(value) {
+      this.switchPreviousValue = this.switchValue;
+      this.switchValue = value;
+    },
     saveSettings(settings) {
       this.modal.open = true;
       this.modal.text = "Are you sure you want to change your settings?";

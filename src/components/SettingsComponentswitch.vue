@@ -1,44 +1,44 @@
 <template>
   <nav class="component-switch">
     <button
-      @click="$emit('input', 'FormSettings')"
+      @click="$emit('valueChange', 1)"
       :class="{
         'component-switch__btn': true,
-        'component-switch__btn--hoverable': value !== 'FormSettings',
+        'component-switch__btn--hoverable': value !== 1,
       }"
     >
       <icon-equalizer
         :class="{
           'component-switch__icon': true,
-          'component-switch__icon--active': value === 'FormSettings',
+          'component-switch__icon--active': value === 1,
         }"
       />
     </button>
     <button
-      @click="$emit('input', 'FormUser')"
+      @click="$emit('valueChange', 2)"
       :class="{
         'component-switch__btn': true,
-        'component-switch__btn--hoverable': value !== 'FormUser',
+        'component-switch__btn--hoverable': value !== 2,
       }"
     >
       <icon-user
         :class="{
           'component-switch__icon': true,
-          'component-switch__icon--active': value === 'FormUser',
+          'component-switch__icon--active': value === 2,
         }"        
       />
     </button>
     <button
-      @click="$emit('input', 'FormLogin')"
+      @click="$emit('valueChange', 3)"
       :class="{
         'component-switch__btn': true,
-        'component-switch__btn--hoverable': value !== 'FormLogin',
+        'component-switch__btn--hoverable': value !== 3,
       }"
     >
       <icon-user
         :class="{
           'component-switch__icon': true,
-          'component-switch__icon--active': value === 'FormLogin',
+          'component-switch__icon--active': value === 3,
         }"        
       />
     </button>
