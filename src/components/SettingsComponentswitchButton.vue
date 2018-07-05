@@ -25,9 +25,6 @@ export default {
   components: {
     IconEqualizer,
     IconUser
-  },
-  mounted() {
-    console.log(this);
   }
 };
 </script>
