@@ -13,7 +13,7 @@
           <component
             :is="currentComponent"
             @onSubmitSettings="saveSettings($event)"
-            @onSubmitUser="saveUser($event)"
+            @onSubmitUser="saveProfile($event)"
           />
         </transition>
       </main>
@@ -29,7 +29,7 @@
 <script>
 import ArrowBack from "@/assets/svg/arrow_back.svg";
 import FormSettings from "@/components/FormSettings";
-import FormUser from "@/components/FormUser";
+import FormProfile from "@/components/FormProfile";
 import FormLogin from "@/components/FormLogin";
 import SettingsComponentswitch from "@/components/SettingsComponentswitch";
 
@@ -37,7 +37,7 @@ export default {
   components: {
     ArrowBack,
     FormSettings,
-    FormUser,
+    FormProfile,
     FormLogin,
     SettingsComponentswitch
   },
@@ -57,7 +57,7 @@ export default {
       if (this.switchValue === 1) {
         return "FormSettings";
       } else if (this.switchValue === 2) {
-        return "FormUser";
+        return "FormProfile";
       } else {
         return "FormLogin";
       }
@@ -84,16 +84,16 @@ export default {
         }, 300);
       };
     },
-    saveUser(user) {
+    saveProfile(profile) {
       this.modal.open = true;
-      this.modal.text = "Are you sure you want to change your user info?";
+      this.modal.text = "Are you sure you want to change your profile info?";
       this.modal.onConfirm = () => {
         try {
-          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("profile", JSON.stringify(profile));
         } catch (e) {
           console.log("Error!", e);
         } finally {
-          this.$store.dispatch("user/setUser", user);
+          this.$store.dispatch("profile/setProfile", profile);
           this.modal.open = false;
           setTimeout(() => {
             this.$router.push("/");

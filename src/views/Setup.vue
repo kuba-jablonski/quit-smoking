@@ -7,7 +7,7 @@
           <component
             :is="currentComponent" 
             @onSubmitSettings="saveSettings($event)"
-            @onSubmitUser="saveUser($event)"
+            @onSubmitUser="saveProfile($event)"
           >
             <template slot="form-user-buttons">
               <base-button @click.native="step--" class="mr-auto">Back</base-button>
@@ -25,14 +25,14 @@
 import FormSettings from "@/components/FormSettings";
 import SetupCongrats from "@/components/SetupCongrats";
 import SetupStepper from "@/components/SetupStepper";
-import FormUser from "@/components/FormUser";
+import FormProfile from "@/components/FormProfile";
 
 export default {
   components: {
     FormSettings,
     SetupCongrats,
     SetupStepper,
-    FormUser
+    FormProfile
   },
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
         case 1:
           return "FormSettings";
         case 2:
-          return "FormUser";
+          return "FormProfile";
         case 3:
           return "SetupCongrats";
       }
@@ -56,13 +56,13 @@ export default {
       this.$store.dispatch("core/saveSettings", settings);
       this.step++;
     },
-    saveUser(user) {
+    saveProfile(profile) {
       try {
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("profile", JSON.stringify(profile));
       } catch (e) {
         console.log("Error!", e);
       } finally {
-        this.$store.dispatch("user/setUser", user);
+        this.$store.dispatch("profile/setProfile", profile);
         this.step++;
       }
     }

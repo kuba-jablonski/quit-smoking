@@ -17,7 +17,7 @@ export default {
     }
   },
   actions: {
-    setUser({ commit }, user) {
+    setProfile({ commit }, user) {
       commit("setUsername", user.username);
       commit("setFilename", user.filename);
       commit("setFileSrc", user.fileSrc);

@@ -15,7 +15,7 @@ import { mapState } from "vuex";
 
 export default {
   computed: {
-    ...mapState("user", ["username", "fileSrc"]),
+    ...mapState("profile", ["username", "fileSrc"]),
     quitDate() {
       return this.$store.getters["core/quitDateObject"].toLocaleString({
         year: "numeric",
