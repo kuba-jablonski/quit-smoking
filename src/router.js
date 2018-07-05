@@ -23,6 +23,10 @@ const router = new Router({
       path: "/setup",
       name: "setup",
       component: Setup
+    },
+    {
+      path: "*",
+      redirect: "/"
     }
   ]
 });
