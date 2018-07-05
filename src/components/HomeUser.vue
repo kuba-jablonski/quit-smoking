@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <div class="user__image">
+  <div v-if="username" class="card">
+    <div v-if="fileSrc" class="user__image">
       <img :src="fileSrc" alt="">
     </div>
     <div class="user__text">
