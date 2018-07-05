@@ -1,58 +1,32 @@
 <template>
   <nav class="component-switch">
-    <button
-      @click="$emit('valueChange', 1)"
-      :class="{
-        'component-switch__btn': true,
-        'component-switch__btn--hoverable': value !== 1,
-      }"
-    >
-      <icon-equalizer
-        :class="{
-          'component-switch__icon': true,
-          'component-switch__icon--active': value === 1,
-        }"
-      />
-    </button>
-    <button
-      @click="$emit('valueChange', 2)"
-      :class="{
-        'component-switch__btn': true,
-        'component-switch__btn--hoverable': value !== 2,
-      }"
-    >
-      <icon-user
-        :class="{
-          'component-switch__icon': true,
-          'component-switch__icon--active': value === 2,
-        }"        
-      />
-    </button>
-    <button
-      @click="$emit('valueChange', 3)"
-      :class="{
-        'component-switch__btn': true,
-        'component-switch__btn--hoverable': value !== 3,
-      }"
-    >
-      <icon-user
-        :class="{
-          'component-switch__icon': true,
-          'component-switch__icon--active': value === 3,
-        }"        
-      />
-    </button>
+    <settings-componentswitch-button
+      @click="$emit('valueChange', $event)"
+      :value="value"
+      :position="1"
+      icon="icon-equalizer"
+    />
+    <settings-componentswitch-button
+      @click="$emit('valueChange', $event)"
+      :value="value"
+      :position="2"
+      icon="icon-user"
+    />
+    <settings-componentswitch-button
+      @click="$emit('valueChange', $event)"
+      :value="value"
+      :position="3"
+      icon="icon-user"
+    />
   </nav>
 </template>
 
 <script>
-import IconEqualizer from "@/assets/svg/equalizer.svg";
-import IconUser from "@/assets/svg/user.svg";
+import SettingsComponentswitchButton from "@/components/SettingsComponentswitchButton";
 
 export default {
   components: {
-    IconEqualizer,
-    IconUser
+    SettingsComponentswitchButton
   },
   props: ["value"]
 };
