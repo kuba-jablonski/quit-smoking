@@ -22,7 +22,7 @@
             </template>
             <template slot="form-login-buttons">
               <base-button @click.native="previousStep = step; step++" class="mr-auto">Back</base-button>
-              <base-button type="submit" color="primary">Save</base-button>
+              <base-button type="submit" color="primary">Submit</base-button>
             </template>
           </component>
         </transition>
@@ -80,8 +80,13 @@ export default {
       this.$store.dispatch("profile/setProfile", profile);
       this.step++;
     },
-    login(credentials) {
-      this.$store.dispatch("user/login", credentials);
+    async login(credentials) {
+      try {
+        await this.$store.dispatch("user/login", credentials);
+        this.$router.push("/");
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 };

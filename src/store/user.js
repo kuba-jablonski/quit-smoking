@@ -12,62 +12,54 @@ export default {
   },
   actions: {
     async register({ commit, dispatch, rootGetters }, payload) {
-      try {
-        const res = await fetch("http://localhost:3000/users/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            email: payload.email,
-            password: payload.password,
-            settings: rootGetters["core/settings"],
-            profile: rootGetters["profile/profile"]
-          })
-        });
+      const res = await fetch("http://localhost:3000/users/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: payload.email,
+          password: payload.password,
+          settings: rootGetters["core/settings"],
+          profile: rootGetters["profile/profile"]
+        })
+      });
 
-        const data = await res.json();
+      const data = await res.json();
 
-        if (res.status >= 200 && res.status < 300) {
-          const token = res.headers.get("x-auth-token");
-          storeToken(token);
-          commit("setId", data._id);
-          dispatch("core/saveSettings", data.settings, { root: true });
-          dispatch("profile/setProfile", data.profile, { root: true });
-        } else {
-          throw new Error(data.msg);
-        }
-      } catch (e) {
-        console.log(e);
+      if (res.status >= 200 && res.status < 300) {
+        const token = res.headers.get("x-auth-token");
+        storeToken(token);
+        commit("setId", data._id);
+        dispatch("core/saveSettings", data.settings, { root: true });
+        dispatch("profile/setProfile", data.profile, { root: true });
+      } else {
+        throw new Error(data.msg);
       }
     },
 
     async login({ commit, dispatch }, payload) {
-      try {
-        const res = await fetch("http://localhost:3000/auth/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            email: payload.email,
-            password: payload.password
-          })
-        });
+      const res = await fetch("http://localhost:3000/auth/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: payload.email,
+          password: payload.password
+        })
+      });
 
-        const data = await res.json();
+      const data = await res.json();
 
-        if (res.status >= 200 && res.status < 300) {
-          const token = res.headers.get("x-auth-token");
-          storeToken(token);
-          commit("setId", data._id);
-          dispatch("core/saveSettings", data.settings, { root: true });
-          dispatch("profile/setProfile", data.profile, { root: true });
-        } else {
-          throw new Error(data.msg);
-        }
-      } catch (e) {
-        console.log(e);
+      if (res.status >= 200 && res.status < 300) {
+        const token = res.headers.get("x-auth-token");
+        storeToken(token);
+        commit("setId", data._id);
+        dispatch("core/saveSettings", data.settings, { root: true });
+        dispatch("profile/setProfile", data.profile, { root: true });
+      } else {
+        throw new Error(data.msg);
       }
     }
   }

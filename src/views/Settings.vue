@@ -97,11 +97,21 @@ export default {
         }, 300);
       };
     },
-    register(credentials) {
-      this.$store.dispatch("user/register", credentials);
+    async register(credentials) {
+      try {
+        this.$store.dispatch("user/register", credentials);
+        this.$router.push("/");
+      } catch (e) {
+        console.log(e);
+      }
     },
-    login(credentials) {
-      this.$store.dispatch("user/login", credentials);
+    async login(credentials) {
+      try {
+        this.$store.dispatch("user/login", credentials);
+        this.$router.push("/");
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 };
