@@ -1,5 +1,6 @@
 import { DateTime, Settings } from "luxon";
 Settings.defaultLocale = "en";
+import { storeSettings } from "@/localStorage";
 
 export default {
   namespaced: true,
@@ -35,7 +36,7 @@ export default {
       }, 1000);
     },
     saveSettings({ commit }, payload) {
-      localStorage.setItem("settings", JSON.stringify(payload));
+      storeSettings(payload);
       commit("setCigsCount", payload.cigsPerDay);
       commit("setPackCount", payload.cigsInPack);
       commit("setPackCost", payload.packCost);
@@ -65,6 +66,9 @@ export default {
     },
     settingsSet({ quitDate, cigsPerDay, cigsInPack, packCost }) {
       return !!quitDate && !!cigsPerDay && !!cigsInPack && !!packCost;
+    },
+    settings({ quitDate, cigsPerDay, cigsInPack, packCost }) {
+      return { quitDate, cigsPerDay, cigsInPack, packCost };
     }
   }
 };

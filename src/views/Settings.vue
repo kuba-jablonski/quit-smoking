@@ -88,17 +88,11 @@ export default {
       this.modal.open = true;
       this.modal.text = "Are you sure you want to change your profile info?";
       this.modal.onConfirm = () => {
-        try {
-          localStorage.setItem("profile", JSON.stringify(profile));
-        } catch (e) {
-          console.log("Error!", e);
-        } finally {
-          this.$store.dispatch("profile/setProfile", profile);
-          this.modal.open = false;
-          setTimeout(() => {
-            this.$router.push("/");
-          }, 300);
-        }
+        this.$store.dispatch("profile/setProfile", profile);
+        this.modal.open = false;
+        setTimeout(() => {
+          this.$router.push("/");
+        }, 300);
       };
     }
   }

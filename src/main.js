@@ -6,17 +6,14 @@ import "./registerServiceWorker";
 import Datetime from "vue-datetime";
 import "vue-datetime/dist/vue-datetime.css";
 import "@/components/_globals";
+import { getLocalUserData } from "@/localStorage";
 
 Vue.use(Datetime);
 
 Vue.config.productionTip = false;
 
 store.dispatch("core/trackTime");
-
-const settings = JSON.parse(localStorage.getItem("settings"));
-const profile = JSON.parse(localStorage.getItem("profile"));
-if (settings) store.dispatch("core/saveSettings", settings);
-if (profile) store.dispatch("profile/setProfile", profile);
+getLocalUserData();
 
 new Vue({
   router,

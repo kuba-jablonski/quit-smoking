@@ -1,3 +1,5 @@
+import { storeProfile } from "@/localStorage";
+
 export default {
   namespaced: true,
   state: {
@@ -17,10 +19,16 @@ export default {
     }
   },
   actions: {
-    setProfile({ commit }, user) {
-      commit("setUsername", user.username);
-      commit("setFilename", user.filename);
-      commit("setFileSrc", user.fileSrc);
+    setProfile({ commit }, profile) {
+      storeProfile(profile);
+      commit("setUsername", profile.username);
+      commit("setFilename", profile.filename);
+      commit("setFileSrc", profile.fileSrc);
+    }
+  },
+  getters: {
+    profile({ username, filename, fileSrc }) {
+      return { username, filename, fileSrc };
     }
   }
 };

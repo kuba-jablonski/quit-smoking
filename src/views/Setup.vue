@@ -1,22 +1,30 @@
 <template>
   <transition name="slide">
     <div class="setup">
-      <setup-stepper :step="step"/>
-      <main class="main">
-        <transition name="slide-right-left" mode="out-in">
-          <component
-            :is="currentComponent" 
-            @onSubmitSettings="saveSettings($event)"
-            @onSubmitUser="saveProfile($event)"
-          >
-            <template slot="form-user-buttons">
-              <base-button @click.native="step--" class="mr-auto">Back</base-button>
-              <base-button @click.native="step++" class="mr-md">Skip</base-button>
-              <base-button type="submit" color="primary">Save</base-button>
-            </template>
-          </component>
-        </transition>
-      </main>
+      <transition name="fade">
+        <div>
+          <setup-stepper :step="step"/>
+          <main class="main">
+            <transition name="slide-right-left" mode="out-in">
+              <component
+                :is="currentComponent" 
+                @onSubmitSettings="saveSettings($event)"
+                @onSubmitUser="saveProfile($event)"
+              >
+                <template slot="form-user-buttons">
+                  <base-button @click.native="step--" class="mr-auto">Back</base-button>
+                  <base-button @click.native="step++" class="mr-md">Skip</base-button>
+                  <base-button type="submit" color="primary">Save</base-button>
+                </template>
+                <template slot="form-settings-buttons">
+                  <base-button @click.native="step--" class="mr-auto">Import</base-button>
+                  <base-button type="submit" color="primary">Save</base-button>
+                </template>
+              </component>
+            </transition>
+          </main>
+        </div>
+      </transition>
     </div>
   </transition>
 </template>
@@ -57,14 +65,8 @@ export default {
       this.step++;
     },
     saveProfile(profile) {
-      try {
-        localStorage.setItem("profile", JSON.stringify(profile));
-      } catch (e) {
-        console.log("Error!", e);
-      } finally {
-        this.$store.dispatch("profile/setProfile", profile);
-        this.step++;
-      }
+      this.$store.dispatch("profile/setProfile", profile);
+      this.step++;
     }
   }
 };
