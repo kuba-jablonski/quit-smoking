@@ -3,7 +3,7 @@
     <div class="setup">
       <setup-stepper :step="step"/>
       <main class="main">
-        <transition name="slide-right-left" mode="out-in">
+        <transition :name="transitionName" mode="out-in">
           <component
             :is="currentComponent" 
             @onSubmitSettings="saveSettings($event)"
@@ -12,16 +12,16 @@
             :register-possible="false"
           >
             <template slot="form-user-buttons">
-              <base-button @click.native="step--" class="mr-auto">Back</base-button>
-              <base-button @click.native="step++" class="mr-md">Skip</base-button>
+              <base-button @click.native="previousStep = step; step--" class="mr-auto">Back</base-button>
+              <base-button @click.native="previousStep = step; step++" class="mr-md">Skip</base-button>
               <base-button type="submit" color="primary">Save</base-button>
             </template>
             <template slot="form-settings-buttons">
-              <base-button @click.native="step--" class="mr-auto">Import</base-button>
+              <base-button @click.native="previousStep = step; step--" class="mr-auto">Import</base-button>
               <base-button type="submit" color="primary">Save</base-button>
             </template>
-            <template slot="form-register-buttons">
-              <base-button @click.native="step++" class="mr-auto">Import</base-button>
+            <template slot="form-login-buttons">
+              <base-button @click.native="previousStep = step; step++" class="mr-auto">Back</base-button>
               <base-button type="submit" color="primary">Save</base-button>
             </template>
           </component>
@@ -48,6 +48,7 @@ export default {
   },
   data() {
     return {
+      previousStep: 1,
       step: 1
     };
   },
@@ -63,6 +64,11 @@ export default {
         case 3:
           return "SetupCongrats";
       }
+    },
+    transitionName() {
+      return this.step < this.previousStep
+        ? "slide-left-right"
+        : "slide-right-left";
     }
   },
   methods: {
