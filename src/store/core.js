@@ -1,6 +1,6 @@
 import { DateTime, Settings } from "luxon";
 Settings.defaultLocale = "en";
-import { storeSettings } from "@/localStorage";
+import { storeSettings, getToken } from "@/localStorage";
 
 export default {
   namespaced: true,
@@ -41,6 +41,24 @@ export default {
       commit("setPackCount", payload.cigsInPack);
       commit("setPackCost", payload.packCost);
       commit("setQuitDate", payload.quitDate);
+    },
+    async updateSettings({ dispatch }, payload) {
+      const res = await fetch("http://localhost:3000/users/me/settings", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": getToken()
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+
+      if (res.status >= 200 && res.status < 300) {
+        dispatch("saveSettings", data);
+      } else {
+        throw new Error(data.msg);
+      }
     }
   },
   getters: {

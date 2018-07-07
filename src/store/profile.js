@@ -1,4 +1,4 @@
-import { storeProfile } from "@/localStorage";
+import { storeProfile, getToken } from "@/localStorage";
 
 export default {
   namespaced: true,
@@ -24,6 +24,24 @@ export default {
       commit("setUsername", profile.username);
       commit("setFilename", profile.filename);
       commit("setFileSrc", profile.fileSrc);
+    },
+    async updateProfile({ dispatch }, payload) {
+      const res = await fetch("http://localhost:3000/users/me/profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": getToken()
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+
+      if (res.status >= 200 && res.status < 300) {
+        dispatch("setProfile", data);
+      } else {
+        throw new Error(data.msg);
+      }
     }
   },
   getters: {

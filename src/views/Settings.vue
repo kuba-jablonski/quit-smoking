@@ -78,23 +78,31 @@ export default {
     saveSettings(settings) {
       this.modal.open = true;
       this.modal.text = "Are you sure you want to change your settings?";
-      this.modal.onConfirm = () => {
-        this.$store.dispatch("core/saveSettings", settings);
-        this.modal.open = false;
-        setTimeout(() => {
-          this.$router.push("/");
-        }, 300);
+      this.modal.onConfirm = async () => {
+        try {
+          await this.$store.dispatch("core/updateSettings", settings);
+          this.modal.open = false;
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 300);
+        } catch (e) {
+          console.log(e);
+        }
       };
     },
     saveProfile(profile) {
       this.modal.open = true;
       this.modal.text = "Are you sure you want to change your profile info?";
-      this.modal.onConfirm = () => {
-        this.$store.dispatch("profile/setProfile", profile);
-        this.modal.open = false;
-        setTimeout(() => {
-          this.$router.push("/");
-        }, 300);
+      this.modal.onConfirm = async () => {
+        try {
+          await this.$store.dispatch("profile/updateProfile", profile);
+          this.modal.open = false;
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 300);
+        } catch (e) {
+          console.log(e);
+        }
       };
     },
     async register(credentials) {
