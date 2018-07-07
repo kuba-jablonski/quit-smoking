@@ -99,7 +99,7 @@ export default {
     },
     async register(credentials) {
       try {
-        this.$store.dispatch("user/register", credentials);
+        await this.$store.dispatch("user/register", credentials);
         this.$router.push("/");
       } catch (e) {
         console.log(e);
@@ -107,7 +107,7 @@ export default {
     },
     async login(credentials) {
       try {
-        this.$store.dispatch("user/login", credentials);
+        await this.$store.dispatch("user/login", credentials);
         this.$router.push("/");
       } catch (e) {
         console.log(e);
