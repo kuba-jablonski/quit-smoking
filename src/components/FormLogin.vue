@@ -11,12 +11,12 @@
           Password
         </base-input>
         <div class="d-flex mt-md">
-          <slot name="form-settings-buttons">
+          <slot name="form-login-buttons">
             <base-button class="form-btn" type="submit" color="primary" fullWidth>Save</base-button>
           </slot>
         </div>
       </base-form>
-      <div @click="isLogin = false" class="register-link">
+      <div v-if="registerPossible" @click="isLogin = false" class="register-link">
         <p>Don't have an account?</p>
         <p class="title link">Register now.</p>
       </div>
@@ -31,7 +31,7 @@
           Password
         </base-input>
         <div class="d-flex mt-md">
-          <slot name="form-settings-buttons">
+          <slot name="form-register-buttons">
             <base-button class="form-btn" type="submit" color="primary" fullWidth>Save</base-button>
           </slot>
         </div>
@@ -47,6 +47,12 @@
 
 <script>
 export default {
+  props: {
+    registerPossible: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       email: "",
@@ -56,13 +62,13 @@ export default {
   },
   methods: {
     register() {
-      this.$store.dispatch("user/register", {
+      this.$emit("onSubmitRegister", {
         email: this.email,
         password: this.password
       });
     },
     login() {
-      this.$store.dispatch("user/login", {
+      this.$emit("onSubmitLogin", {
         email: this.email,
         password: this.password
       });

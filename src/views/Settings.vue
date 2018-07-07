@@ -14,6 +14,8 @@
             :is="currentComponent"
             @onSubmitSettings="saveSettings($event)"
             @onSubmitUser="saveProfile($event)"
+            @onSubmitRegister="register($event)"
+            @onSubmitLogin="login($event)"
           />
         </transition>
       </main>
@@ -94,6 +96,12 @@ export default {
           this.$router.push("/");
         }, 300);
       };
+    },
+    register(credentials) {
+      this.$store.dispatch("user/register", credentials);
+    },
+    login(credentials) {
+      this.$store.dispatch("user/login", credentials);
     }
   }
 };
