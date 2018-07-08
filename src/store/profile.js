@@ -26,14 +26,17 @@ export default {
       commit("setFileSrc", profile.fileSrc);
     },
     async updateProfile({ dispatch }, payload) {
-      const res = await fetch("http://localhost:3000/users/me/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": getToken()
-        },
-        body: JSON.stringify(payload)
-      });
+      const res = await fetch(
+        `${process.env.VUE_APP_API_ROOT}/users/me/profile`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": getToken()
+          },
+          body: JSON.stringify(payload)
+        }
+      );
 
       const data = await res.json();
 

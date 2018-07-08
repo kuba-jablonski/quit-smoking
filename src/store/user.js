@@ -12,7 +12,7 @@ export default {
   },
   actions: {
     async register({ commit, dispatch, rootGetters }, payload) {
-      const res = await fetch("http://localhost:3000/users/", {
+      const res = await fetch(`${process.env.VUE_APP_API_ROOT}/users/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -39,7 +39,7 @@ export default {
     },
 
     async login({ commit, dispatch }, payload) {
-      const res = await fetch("http://localhost:3000/auth/", {
+      const res = await fetch(`${process.env.VUE_APP_API_ROOT}/auth/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
