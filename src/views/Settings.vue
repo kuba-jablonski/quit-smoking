@@ -24,6 +24,7 @@
         <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
         <base-button color="red" @click.native="modal.open = false">No</base-button>
       </base-modal>
+      <base-notification/>
     </div>
   </transition>
 </template>
