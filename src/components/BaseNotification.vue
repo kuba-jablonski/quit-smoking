@@ -8,6 +8,17 @@
   </transition>
 </template>
 
+<script>
+export default {
+  mounted() {
+    setTimeout(() => {
+      this.$emit("close");
+    }, 5000);
+  }
+};
+</script>
+
+
 <style lang="scss" scoped>
 .notification {
   position: absolute;

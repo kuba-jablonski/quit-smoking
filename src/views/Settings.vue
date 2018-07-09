@@ -24,7 +24,9 @@
         <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
         <base-button color="red" @click.native="modal.open = false">No</base-button>
       </base-modal>
-      <base-notification/>
+      <base-notification @close="notification = false" v-if="notification">
+        {{ notificationText }}
+      </base-notification>
     </div>
   </transition>
 </template>
@@ -51,6 +53,8 @@ export default {
         text: "",
         onConfirm: null
       },
+      notification: false,
+      notificationText: "",
       switchValue: 1,
       switchPreviousValue: null
     };
@@ -87,7 +91,9 @@ export default {
             this.$router.push("/");
           }, 300);
         } catch (e) {
-          console.log(e);
+          this.modal.open = false;
+          this.notification = true;
+          this.notificationText = e.message;
         }
       };
     },
@@ -102,7 +108,9 @@ export default {
             this.$router.push("/");
           }, 300);
         } catch (e) {
-          console.log(e);
+          this.modal.open = false;
+          this.notification = true;
+          this.notificationText = e.message;
         }
       };
     },
@@ -111,7 +119,8 @@ export default {
         await this.$store.dispatch("user/register", credentials);
         this.$router.push("/");
       } catch (e) {
-        console.log(e);
+        this.notification = true;
+        this.notificationText = e.message;
       }
     },
     async login(credentials) {
@@ -119,7 +128,8 @@ export default {
         await this.$store.dispatch("user/login", credentials);
         this.$router.push("/");
       } catch (e) {
-        console.log(e);
+        this.notification = true;
+        this.notificationText = e.message;
       }
     }
   }

@@ -27,6 +27,9 @@
           </component>
         </transition>
       </main>
+      <base-notification @close="notification = false" v-if="notification">
+        {{ notificationText }}
+      </base-notification>
     </div>
   </transition>
 </template>
@@ -49,7 +52,9 @@ export default {
   data() {
     return {
       previousStep: 1,
-      step: 1
+      step: 1,
+      notification: false,
+      notificationText: ""
     };
   },
   computed: {
@@ -85,7 +90,8 @@ export default {
         await this.$store.dispatch("user/login", credentials);
         this.$router.push("/");
       } catch (e) {
-        console.log(e);
+        this.notification = true;
+        this.notificationText = e.message;
       }
     }
   }
