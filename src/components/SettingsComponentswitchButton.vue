@@ -19,12 +19,14 @@
 <script>
 import IconEqualizer from "@/assets/svg/equalizer.svg";
 import IconUser from "@/assets/svg/user.svg";
+import IconCloudUpload from "@/assets/svg/cloud_upload.svg";
 
 export default {
   props: ["value", "position", "icon"],
   components: {
     IconEqualizer,
-    IconUser
+    IconUser,
+    IconCloudUpload
   }
 };
 </script>

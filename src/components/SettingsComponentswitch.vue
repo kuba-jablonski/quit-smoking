@@ -16,7 +16,7 @@
       @click="$emit('valueChange', $event)"
       :value="value"
       :position="3"
-      icon="icon-user"
+      icon="icon-cloud-upload"
     />
   </nav>
 </template>
