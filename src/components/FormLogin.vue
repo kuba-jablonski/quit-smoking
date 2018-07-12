@@ -7,7 +7,7 @@
         <base-input v-model="email" id="email" required type="email">
           Email
         </base-input>
-        <base-input v-model="password" required id="password">
+        <base-input v-model="password" required minlength="5" maxlength="255" id="password">
           Password
         </base-input>
         <div class="d-flex mt-md">
@@ -24,7 +24,7 @@
     <div key="register" v-else>
       <p class="title mb-md text-center uppercase">Register</p>
       <base-form @submit="register">
-        <base-input v-model="email" id="email" required type="email">
+        <base-input v-model="email" id="email" required minlength="5" maxlength="255" type="email">
           Email
         </base-input>
         <base-input v-model="password" required id="password">
