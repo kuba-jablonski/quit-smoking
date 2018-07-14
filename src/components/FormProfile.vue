@@ -2,7 +2,7 @@
   <div>
     <p class="title mb-md text-center uppercase">Profile</p>
     <base-form @submit="onSubmit">
-      <base-input v-model="username" type="text" max="10" required>Choose a username.</base-input>
+      <base-input v-model="username" type="text" minlength="3" maxlength="10">Choose a username.</base-input>
       <form-profile-dropbox
         :filename="filename"
         :file-src="fileSrc"
