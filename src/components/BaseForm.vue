@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="$emit('submit')" class="form">
+  <form @submit.prevent="$emit('submit')" autocomplete="off" class="form">
     <slot/>
   </form>
 </template>
