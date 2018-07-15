@@ -10,6 +10,7 @@
       <main class="main">
         <home-user/>
         <home-info/>
+        <home-health/>
       </main>
     </div>
   </transition>
@@ -18,13 +19,15 @@
 <script>
 import HomeUser from "@/components/HomeUser";
 import HomeInfo from "@/components/HomeInfo";
+import HomeHealth from "@/components/HomeHealth";
 import SettingsIcon from "@/assets/svg/settings.svg";
 
 export default {
   components: {
     HomeUser,
     HomeInfo,
-    SettingsIcon
+    SettingsIcon,
+    HomeHealth
   }
 };
 </script>
