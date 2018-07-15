@@ -27,6 +27,7 @@ export default {
   background-color: $color-font;
   margin: 0 1rem;
   padding: 1rem;
+  z-index: 2;
 }
 
 .slide-in-bottom-enter,
