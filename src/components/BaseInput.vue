@@ -63,5 +63,26 @@ export default {
 
 .vdatetime-popup {
   text-align: left;
+
+  &__header {
+    background-color: $color-primary;
+  }
+
+  &__actions {
+    &__button {
+      &--cancel,
+      &--confirm {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+.vdatetime-calendar__month__day--selected > span > span {
+  background-color: $color-primary;
+}
+
+.vdatetime-time-picker__item--selected {
+  color: $color-primary;
 }
 </style>
