@@ -12,7 +12,7 @@
     >
       <span :style="{color: color}">{{ calculatePercentage }}%</span>
     </radial-progress-bar>
-    <p class="ml-sm">
+    <p class="ml-md">
       {{ item.description }}
     </p>
   </div>
@@ -49,7 +49,8 @@ export default {
 <style lang="scss" scoped>
 .health-item {
   background-color: #fff;
-  display: flex;
+  display: grid;
+  grid-template-columns: min-content 1fr;
   align-items: center;
   line-height: 1.2;
   font-weight: 600;

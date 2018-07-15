@@ -1,13 +1,15 @@
 <template>
-  <div v-if="username" class="card">
-    <div v-if="fileSrc" class="user__image">
-      <img :src="fileSrc" alt="">
-    </div>
-    <div class="user__text">
-      <p class="title">Keep it up {{ username }}!</p>
-      <p>You are smoke free since {{ quitDate }}.</p>
-    </div>
-  </div>
+  <base-card :style="{ padding: 0 }" v-if="username">
+    <div class="user">
+      <div v-if="fileSrc" class="user__image">
+        <img :src="fileSrc" alt="">
+      </div>
+      <div class="user__text">
+        <p class="title">Keep it up {{ username }}!</p>
+        <p>You are smoke free since {{ quitDate }}.</p>
+      </div>
+    </div> 
+  </base-card>
 </template>
 
 <script>
@@ -29,14 +31,14 @@ export default {
 
 
 <style lang="scss" scoped>
-.card {
-  background-color: #fff;
+.user {
   display: flex;
   height: 8rem;
 }
 
 .user__image {
   flex: 0 0 8rem;
+  margin-right: 1rem;
 
   img {
     height: 100%;
@@ -50,6 +52,5 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem;
 }
 </style>

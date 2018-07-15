@@ -1,7 +1,7 @@
 <template>
-  <div class="card">
+  <base-card>
     <health-list-item :item="item"/>
-  </div>
+  </base-card>
 </template>
 
 <script>
@@ -22,15 +22,3 @@ export default {
   }
 };
 </script>
-
-
-<style lang="scss" scoped>
-// .card {
-//   background-color: #fff;
-//   display: flex;
-//   align-items: center;
-//   padding: 1rem;
-//   line-height: 1.2;
-//   font-weight: 600;
-// }
-</style>

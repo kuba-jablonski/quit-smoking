@@ -1,5 +1,5 @@
 <template>
-  <div v-if="hasQuit" class="card">
+  <base-card v-if="hasQuit">
     <div class="info__row">
       <p class="title info__title">Quit smoking:</p>
       <div class="info__data">{{ timeWithoutSmoking | dateObjectToString }}</div>
@@ -12,14 +12,14 @@
       <p class="title info__title">Money saved:</p>
       <div class="info__data">{{ moneySaved }} PLN</div>
     </div>
-  </div>
-  <div v-else class="card">
+  </base-card>
+  <base-card v-else class="card">
     <div class="info__row">
       <p class="title info__title">Quitting in:</p>
       <div class="info__data">{{ timeWithoutSmoking | dateObjectToString }}</div>
     </div>
     <p>Good luck!</p>
-  </div>
+  </base-card>
 </template>
 
 <script>
@@ -56,11 +56,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.card {
-  background-color: #fff;
-  padding: 1rem;
-}
-
 .info {
   &__row {
     display: flex;
