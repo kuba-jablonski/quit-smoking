@@ -1,5 +1,5 @@
 <template>
-  <li class="list-item">
+  <div class="health-item">
     <radial-progress-bar
       :diameter="65"
       :stroke-width="5"
@@ -15,7 +15,7 @@
     <p class="ml-sm">
       {{ item.description }}
     </p>
-  </li>
+  </div>
 </template>
 
 <script>
@@ -47,11 +47,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-item {
+.health-item {
   background-color: #fff;
   display: flex;
   align-items: center;
-  padding: 1rem;
   line-height: 1.2;
   font-weight: 600;
 }
