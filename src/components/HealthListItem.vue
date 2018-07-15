@@ -32,10 +32,10 @@ export default {
         this.$store.getters["core/quitDateObject"]
       );
 
-      const percent =
-        (
-          diffNow.as("milliseconds") / this.item.duration.as("milliseconds")
-        ).toFixed(2) * 100;
+      const percent = Math.floor(
+        (diffNow.as("milliseconds") / this.item.duration.as("milliseconds")) *
+          100
+      );
 
       return percent < 100 ? percent : 100;
     },
