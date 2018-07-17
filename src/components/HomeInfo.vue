@@ -5,7 +5,7 @@
       <div class="info__data">{{ timeWithoutSmoking | dateObjectToString }}</div>
     </div>
     <div class="info__row">
-      <p class="title info__title">Papierosy niezapalone:</p>
+      <p class="title info__title">Cigarettes avioded:</p>
       <div class="info__data">{{ cigsNotSmoked }}</div>
     </div>
     <div class="info__row">
