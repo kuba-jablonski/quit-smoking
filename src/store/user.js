@@ -70,7 +70,7 @@ export default {
       }
     },
 
-    async fetchUser({ commit, dispatch, rootGetters }) {
+    async compareUserData({ dispatch, rootGetters }) {
       const token = getToken();
 
       if (token) {
@@ -93,15 +93,22 @@ export default {
           );
 
           if (settingsChanged || profileChanged) {
-            // update local data
-            commit("setId", data._id);
-            storeId(data._id);
-            dispatch("core/saveSettings", data.settings, { root: true });
-            dispatch("profile/setProfile", data.profile, { root: true });
-            commit("ui/setNotificationMsg", "Updated with server data.", {
-              root: true
-            });
-            commit("ui/openNotification", null, { root: true });
+            return {
+              useServerData: () => {
+                dispatch("core/saveSettings", data.settings, { root: true });
+                dispatch("profile/setProfile", data.profile, { root: true });
+              },
+              useLocalData: () => {
+                dispatch("core/updateSettings", rootGetters["core/settings"], {
+                  root: true
+                });
+                dispatch(
+                  "profile/updateProfile",
+                  rootGetters["profile/profile"],
+                  { root: true }
+                );
+              }
+            };
           }
         }
       }

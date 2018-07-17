@@ -4,18 +4,43 @@
     <base-notification v-if="notification.open" @close="$store.commit('ui/closeNotification')">
       {{ notification.msg }}
     </base-notification>
+    <base-modal :open="modal.open">
+      <p class="mb-hg">Found a difference between local and server data. Choose which you want to use.</p>
+      <base-button class="mr-md" color="green" @click.native="modal.useServerData">Yes</base-button>
+      <base-button color="red" @click.native="modal.useLocalData">No</base-button>
+    </base-modal>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      modal: {
+        open: false,
+        useServerData: null,
+        useLocalData: null
+      }
+    };
+  },
   computed: {
     notification() {
       return this.$store.getters["ui/notification"];
     }
   },
-  mounted() {
-    this.$store.dispatch("user/fetchUser");
+  async mounted() {
+    const callbacks = await this.$store.dispatch("user/compareUserData");
+    if (callbacks) {
+      this.modal.open = true;
+      this.modal.useServerData = () => {
+        callbacks.useServerData();
+        this.modal.open = false;
+      };
+      this.modal.useLocalData = () => {
+        callbacks.useLocalData();
+        this.modal.open = false;
+      };
+    }
   }
 };
 </script>

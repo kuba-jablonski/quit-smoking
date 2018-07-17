@@ -59,6 +59,7 @@ export default {
   background-color: rgba(#000, 0.8);
   top: 0;
   left: 0;
+  z-index: 100;
 
   display: flex;
   justify-content: center;
