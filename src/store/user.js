@@ -1,4 +1,4 @@
-import { storeToken, getToken } from "@/localStorage";
+import { storeToken, getToken, storeId } from "@/localStorage";
 
 export default {
   namespaced: true,
@@ -56,6 +56,7 @@ export default {
         const token = res.headers.get("x-auth-token");
         storeToken(token);
         commit("setId", data._id);
+        storeId(data._id);
         dispatch("core/saveSettings", data.settings, { root: true });
         dispatch("profile/setProfile", data.profile, { root: true });
       } else {
@@ -77,10 +78,17 @@ export default {
 
         if (res.status >= 200 && res.status < 300) {
           commit("setId", data._id);
+          storeId(data._id);
           dispatch("core/saveSettings", data.settings, { root: true });
           dispatch("profile/setProfile", data.profile, { root: true });
         }
       }
+    }
+  },
+
+  getters: {
+    isAuthenticated(state) {
+      return !!state._id;
     }
   }
 };
