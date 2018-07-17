@@ -38,7 +38,6 @@ export default {
 
 .user__image {
   flex: 0 0 8rem;
-  margin-right: 1rem;
 
   img {
     height: 100%;
@@ -52,5 +51,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 1rem;
 }
 </style>
