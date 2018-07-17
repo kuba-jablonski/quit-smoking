@@ -4,6 +4,7 @@ import {
   storeId,
   removeIdAndToken
 } from "@/localStorage";
+import { isEqual } from "lodash";
 
 export default {
   namespaced: true,
@@ -69,7 +70,7 @@ export default {
       }
     },
 
-    async fetchUser({ commit, dispatch }) {
+    async fetchUser({ commit, dispatch, rootGetters }) {
       const token = getToken();
 
       if (token) {
@@ -82,10 +83,26 @@ export default {
         const data = await res.json();
 
         if (res.status >= 200 && res.status < 300) {
-          commit("setId", data._id);
-          storeId(data._id);
-          dispatch("core/saveSettings", data.settings, { root: true });
-          dispatch("profile/setProfile", data.profile, { root: true });
+          const settingsChanged = !isEqual(
+            rootGetters["core/settings"],
+            data.settings
+          );
+          const profileChanged = !isEqual(
+            rootGetters["profile/profile"],
+            data.profile
+          );
+
+          if (settingsChanged || profileChanged) {
+            // update local data
+            commit("setId", data._id);
+            storeId(data._id);
+            dispatch("core/saveSettings", data.settings, { root: true });
+            dispatch("profile/setProfile", data.profile, { root: true });
+            commit("ui/setNotificationMsg", "Updated with server data.", {
+              root: true
+            });
+            commit("ui/openNotification", null, { root: true });
+          }
         }
       }
     },
