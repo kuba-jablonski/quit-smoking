@@ -25,25 +25,28 @@ export default {
       commit("setFilename", profile.filename);
       commit("setFileSrc", profile.fileSrc);
     },
-    async updateProfile({ dispatch }, payload) {
-      const res = await fetch(
-        `${process.env.VUE_APP_API_ROOT}/users/me/profile`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "x-auth-token": getToken()
-          },
-          body: JSON.stringify(payload)
+    async updateProfile({ commit }, payload) {
+      try {
+        const res = await fetch(
+          `${process.env.VUE_APP_API_ROOT}/users/me/profile`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token": getToken()
+            },
+            body: JSON.stringify(payload)
+          }
+        );
+
+        const data = await res.json();
+
+        if (res.status < 200 || res.status >= 300) {
+          throw new Error(data.msg);
         }
-      );
-
-      const data = await res.json();
-
-      if (res.status >= 200 && res.status < 300) {
-        dispatch("setProfile", data);
-      } else {
-        throw new Error(data.msg);
+      } catch (e) {
+        commit("ui/setNotificationMsg", e.message, { root: true });
+        commit("ui/openNotification", null, { root: true });
       }
     }
   },

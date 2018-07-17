@@ -24,9 +24,6 @@
         <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
         <base-button color="red" @click.native="modal.open = false">No</base-button>
       </base-modal>
-      <base-notification @close="notification = false" v-if="notification">
-        {{ notificationText }}
-      </base-notification>
     </div>
   </transition>
 </template>
@@ -53,8 +50,6 @@ export default {
         text: "",
         onConfirm: null
       },
-      notification: false,
-      notificationText: "",
       switchValue: 1,
       switchPreviousValue: null
     };
@@ -83,35 +78,25 @@ export default {
     saveSettings(settings) {
       this.modal.open = true;
       this.modal.text = "Are you sure you want to change your settings?";
-      this.modal.onConfirm = async () => {
-        try {
-          await this.$store.dispatch("core/updateSettings", settings);
-          this.modal.open = false;
-          setTimeout(() => {
-            this.$router.push("/");
-          }, 300);
-        } catch (e) {
-          this.modal.open = false;
-          this.notification = true;
-          this.notificationText = e.message;
-        }
+      this.modal.onConfirm = () => {
+        this.$store.dispatch("core/saveSettings", settings);
+        this.$store.dispatch("core/updateSettings", settings);
+        this.modal.open = false;
+        setTimeout(() => {
+          this.$router.push("/");
+        }, 300);
       };
     },
     saveProfile(profile) {
       this.modal.open = true;
       this.modal.text = "Are you sure you want to change your profile info?";
-      this.modal.onConfirm = async () => {
-        try {
-          await this.$store.dispatch("profile/updateProfile", profile);
-          this.modal.open = false;
-          setTimeout(() => {
-            this.$router.push("/");
-          }, 300);
-        } catch (e) {
-          this.modal.open = false;
-          this.notification = true;
-          this.notificationText = e.message;
-        }
+      this.modal.onConfirm = () => {
+        this.$store.dispatch("profile/setProfile", profile);
+        this.$store.dispatch("profile/updateProfile", profile);
+        this.modal.open = false;
+        setTimeout(() => {
+          this.$router.push("/");
+        }, 300);
       };
     },
     async register(credentials) {
@@ -119,8 +104,8 @@ export default {
         await this.$store.dispatch("user/register", credentials);
         this.$router.push("/");
       } catch (e) {
-        this.notification = true;
-        this.notificationText = e.message;
+        this.$store.commit("ui/setNotificationMsg", e.message);
+        this.$store.commit("ui/openNotification");
       }
     },
     async login(credentials) {
@@ -128,8 +113,8 @@ export default {
         await this.$store.dispatch("user/login", credentials);
         this.$router.push("/");
       } catch (e) {
-        this.notification = true;
-        this.notificationText = e.message;
+        this.$store.commit("ui/setNotificationMsg", e.message);
+        this.$store.commit("ui/openNotification");
       }
     }
   }

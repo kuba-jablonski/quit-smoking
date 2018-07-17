@@ -1,8 +1,25 @@
 <template>
   <div id="app">
     <router-view/>
+    <base-notification v-if="notification.open" @close="$store.commit('ui/closeNotification')">
+      {{ notification.msg }}
+    </base-notification>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    notification() {
+      return this.$store.getters["ui/notification"];
+    }
+  },
+  mounted() {
+    this.$store.dispatch("user/fetchUser");
+  }
+};
+</script>
+
 
 <style lang="scss">
 @import "css/base";
