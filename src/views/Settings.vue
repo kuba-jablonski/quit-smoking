@@ -50,7 +50,7 @@ export default {
         text: "",
         onConfirm: null
       },
-      switchValue: 1,
+      switchValue: this.$route.query.component || 1,
       switchPreviousValue: null
     };
   },

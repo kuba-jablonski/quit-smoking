@@ -3,7 +3,7 @@
     <div class="home">
       <nav class="nav">
         <div class="nav__brand">Quiter!</div>
-        <router-link to="/settings">
+        <router-link :to="{ path: '/settings', query: { component: 3 } }">
           <settings-icon class="nav__btn"/>
         </router-link>
       </nav>
