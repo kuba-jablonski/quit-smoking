@@ -13,6 +13,9 @@ export default {
     notification() {
       return this.$store.getters["ui/notification"];
     }
+  },
+  mounted() {
+    this.$store.dispatch("user/fetchUser");
   }
 };
 </script>
