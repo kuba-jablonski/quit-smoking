@@ -32,3 +32,8 @@ export function storeId(id) {
 export function getId() {
   return localStorage.getItem("id");
 }
+
+export function removeIdAndToken() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("id");
+}

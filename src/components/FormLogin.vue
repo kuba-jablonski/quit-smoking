@@ -1,7 +1,7 @@
 <template>
 <div>
   <transition name="fade" mode="out-in">
-    <div key="login" v-if="isLogin">
+    <div key="login" v-if="isLogin && !isAuthenticated">
       <p class="title mb-md text-center uppercase">Login</p>
       <base-form @submit="login">
         <base-input v-model="email" id="email" required type="email">
@@ -21,7 +21,11 @@
         <p class="title link">Register now.</p>
       </div>
     </div>
-    <div key="register" v-else>
+    <div key="logout" v-if="isLogin && isAuthenticated">
+      <p class="title mb-md">You are logged in.</p>
+      <base-button @click.native="logout">Logout</base-button>
+    </div>
+    <div key="register" v-if="!isLogin">
       <p class="title mb-md text-center uppercase">Register</p>
       <base-form @submit="register">
         <base-input v-model="email" id="email" required minlength="5" maxlength="255" type="email">
@@ -60,6 +64,11 @@ export default {
       isLogin: true
     };
   },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters["user/isAuthenticated"];
+    }
+  },
   methods: {
     register() {
       this.$emit("onSubmitRegister", {
@@ -72,6 +81,9 @@ export default {
         email: this.email,
         password: this.password
       });
+    },
+    logout() {
+      this.$emit("onLogout");
     }
   }
 };

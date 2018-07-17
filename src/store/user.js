@@ -1,4 +1,9 @@
-import { storeToken, getToken, storeId } from "@/localStorage";
+import {
+  storeToken,
+  getToken,
+  storeId,
+  removeIdAndToken
+} from "@/localStorage";
 
 export default {
   namespaced: true,
@@ -83,6 +88,11 @@ export default {
           dispatch("profile/setProfile", data.profile, { root: true });
         }
       }
+    },
+
+    logout({ commit }) {
+      removeIdAndToken();
+      commit("setId", null);
     }
   },
 

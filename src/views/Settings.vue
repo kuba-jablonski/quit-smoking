@@ -16,6 +16,7 @@
             @onSubmitUser="saveProfile($event)"
             @onSubmitRegister="register($event)"
             @onSubmitLogin="login($event)"
+            @onLogout="logout"
           />
         </transition>
       </main>
@@ -116,6 +117,9 @@ export default {
         this.$store.commit("ui/setNotificationMsg", e.message);
         this.$store.commit("ui/openNotification");
       }
+    },
+    logout() {
+      this.$store.dispatch("user/logout");
     }
   }
 };
