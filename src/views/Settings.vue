@@ -51,7 +51,7 @@ export default {
         text: "",
         onConfirm: null
       },
-      switchValue: this.$route.query.component || 1,
+      switchValue: parseInt(this.$route.query.component) || 1,
       switchPreviousValue: null
     };
   },
