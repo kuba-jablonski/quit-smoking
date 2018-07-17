@@ -43,27 +43,31 @@ export default {
       commit("setQuitDate", payload.quitDate);
     },
     async updateSettings({ commit }, payload) {
-      try {
-        const res = await fetch(
-          `${process.env.VUE_APP_API_ROOT}/users/me/settings`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              "x-auth-token": getToken()
-            },
-            body: JSON.stringify(payload)
+      const token = getToken();
+
+      if (token) {
+        try {
+          const res = await fetch(
+            `${process.env.VUE_APP_API_ROOT}/users/me/settings`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                "x-auth-token": token
+              },
+              body: JSON.stringify(payload)
+            }
+          );
+
+          const data = await res.json();
+
+          if (res.status < 200 || res.status >= 300) {
+            throw new Error(data.msg);
           }
-        );
-
-        const data = await res.json();
-
-        if (res.status < 200 || res.status >= 300) {
-          throw new Error(data.msg);
+        } catch (e) {
+          commit("ui/setNotificationMsg", e.message, { root: true });
+          commit("ui/openNotification", null, { root: true });
         }
-      } catch (e) {
-        commit("ui/setNotificationMsg", e.message, { root: true });
-        commit("ui/openNotification", null, { root: true });
       }
     }
   },
