@@ -27,7 +27,7 @@ export default {
     return {
       totalSteps: 1,
       completedSteps: 0,
-      diameter: window.innerWidth * 0.8
+      diameter: window.innerWidth * 0.8 > 400 ? 400 : window.innerWidth * 0.8
     };
   },
   mounted() {

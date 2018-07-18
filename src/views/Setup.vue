@@ -2,31 +2,33 @@
   <transition name="slide">
     <div class="setup">
       <setup-stepper :step="step"/>
-      <main class="main">
-        <transition :name="transitionName" mode="out-in">
-          <component
-            :is="currentComponent" 
-            @onSubmitSettings="saveSettings($event)"
-            @onSubmitUser="saveProfile($event)"
-            @onSubmitLogin="login($event)"
-            :register-possible="false"
-          >
-            <template slot="form-user-buttons">
-              <base-button @click.native="previousStep = step; step--" class="mr-auto">Back</base-button>
-              <base-button @click.native="previousStep = step; step++" class="mr-md">Skip</base-button>
-              <base-button type="submit" color="primary">Save</base-button>
-            </template>
-            <template slot="form-settings-buttons">
-              <base-button @click.native="previousStep = step; step--" class="mr-auto">Import</base-button>
-              <base-button type="submit" color="primary">Save</base-button>
-            </template>
-            <template slot="form-login-buttons">
-              <base-button @click.native="previousStep = step; step++" class="mr-auto">Back</base-button>
-              <base-button type="submit" color="primary">Submit</base-button>
-            </template>
-          </component>
-        </transition>
-      </main>
+      <base-container>
+        <main class="main">
+          <transition :name="transitionName" mode="out-in">
+            <component
+              :is="currentComponent" 
+              @onSubmitSettings="saveSettings($event)"
+              @onSubmitUser="saveProfile($event)"
+              @onSubmitLogin="login($event)"
+              :register-possible="false"
+            >
+              <template slot="form-user-buttons">
+                <base-button @click.native="previousStep = step; step--" class="mr-auto">Back</base-button>
+                <base-button @click.native="previousStep = step; step++" class="mr-md">Skip</base-button>
+                <base-button type="submit" color="primary">Save</base-button>
+              </template>
+              <template slot="form-settings-buttons">
+                <base-button @click.native="previousStep = step; step--" class="mr-auto">Import</base-button>
+                <base-button type="submit" color="primary">Save</base-button>
+              </template>
+              <template slot="form-login-buttons">
+                <base-button @click.native="previousStep = step; step++" class="mr-auto">Back</base-button>
+                <base-button type="submit" color="primary">Submit</base-button>
+              </template>
+            </component>
+          </transition>
+        </main>
+      </base-container>
     </div>
   </transition>
 </template>

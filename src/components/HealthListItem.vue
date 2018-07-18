@@ -1,21 +1,23 @@
 <template>
-  <div class="health-item">
-    <radial-progress-bar
-      :diameter="65"
-      :stroke-width="5"
-      :completed-steps="calculatePercentage"
-      :total-steps="100"
-      :animate-speed="3000"
-      :start-color="color"
-      :stop-color="color"
-      inner-stroke-color="#BDBDBD"
-    >
-      <span :style="{color: color}">{{ calculatePercentage }}%</span>
-    </radial-progress-bar>
-    <p class="ml-md">
-      {{ item.description }}
-    </p>
-  </div>
+  <base-card>
+    <div class="health-item">
+      <radial-progress-bar
+        :diameter="65"
+        :stroke-width="5"
+        :completed-steps="calculatePercentage"
+        :total-steps="100"
+        :animate-speed="3000"
+        :start-color="color"
+        :stop-color="color"
+        inner-stroke-color="#BDBDBD"
+      >
+        <span :style="{color: color}">{{ calculatePercentage }}%</span>
+      </radial-progress-bar>
+      <p class="ml-md">
+        {{ item.description }}
+      </p>
+    </div>
+  </base-card>
 </template>
 
 <script>

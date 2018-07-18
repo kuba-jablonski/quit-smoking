@@ -8,18 +8,20 @@
         </router-link>
       </nav>
       <settings-componentswitch :value="switchValue" @valueChange="onValueChange"/>
-      <main class="main">
-        <transition :name="transitionName" mode="out-in">
-          <component
-            :is="currentComponent"
-            @onSubmitSettings="saveSettings($event)"
-            @onSubmitUser="saveProfile($event)"
-            @onSubmitRegister="register($event)"
-            @onSubmitLogin="login($event)"
-            @onLogout="logout"
-          />
-        </transition>
-      </main>
+      <base-container>
+        <main class="main">
+          <transition :name="transitionName" mode="out-in">
+            <component
+              :is="currentComponent"
+              @onSubmitSettings="saveSettings($event)"
+              @onSubmitUser="saveProfile($event)"
+              @onSubmitRegister="register($event)"
+              @onSubmitLogin="login($event)"
+              @onLogout="logout"
+            />
+          </transition>
+        </main>
+      </base-container>
       <base-modal :open="modal.open">
         <p class="mb-hg">{{ modal.text }}</p>
         <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>

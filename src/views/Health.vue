@@ -7,7 +7,11 @@
           Health
         </router-link>
       </nav>
-      <health-list />
+      <base-container>
+        <main class="main">
+          <health-list/>
+        </main>
+      </base-container>
     </div>
   </transition>
 </template>
@@ -58,5 +62,9 @@ export default {
     margin-right: 1rem;
     fill: #fff;
   }
+}
+
+.main {
+  padding: 1rem;
 }
 </style>

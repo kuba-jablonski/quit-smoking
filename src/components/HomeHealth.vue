@@ -1,7 +1,5 @@
 <template>
-  <base-card>
-    <health-list-item :item="item"/>
-  </base-card>
+  <health-list-item :item="item"/>
 </template>
 
 <script>

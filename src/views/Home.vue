@@ -7,17 +7,19 @@
           <settings-icon class="nav__btn"/>
         </router-link>
       </nav>
-      <main class="main">
-        <router-link class="router-link" tag="div" :to="{ path: '/settings', query: { component: 2 } }">
-          <home-user/>
-        </router-link>
-        <router-link class="router-link" tag="div" :to="{ path: '/settings', query: { component: 1 } }">
-          <home-info/>
-        </router-link>
-        <router-link class="router-link" tag="div" to="/health">
-          <home-health/>
-        </router-link>
-      </main>
+      <base-container>
+        <main class="main">
+          <router-link class="router-link" tag="div" :to="{ path: '/settings', query: { component: 2 } }">
+            <home-user/>
+          </router-link>
+          <router-link class="router-link" tag="div" :to="{ path: '/settings', query: { component: 1 } }">
+            <home-info/>
+          </router-link>
+          <router-link class="router-link" tag="div" to="/health">
+            <home-health/>
+          </router-link>
+        </main>
+      </base-container>
     </div>
   </transition>
 </template>

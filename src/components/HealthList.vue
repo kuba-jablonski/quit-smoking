@@ -23,13 +23,9 @@ export default {
 
 <style lang="scss" scoped>
 .list {
-  padding: 1rem 0;
-  background-color: #fff;
   display: grid;
   grid-gap: 1rem;
   font-size: 1.4rem;
-  &__item {
-    padding: 0 1rem;
-  }
+  list-style: none;
 }
 </style>
