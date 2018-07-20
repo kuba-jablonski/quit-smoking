@@ -1,12 +1,16 @@
 <template>
   <transition name="slide">
     <div class="health">
-      <nav class="nav">
-        <router-link to="/" class="nav__btn">
-          <arrow-back class="nav__icon"/>
-          Health
-        </router-link>
-      </nav>
+      <base-nav>
+        <base-container>
+          <div class="health-nav">
+            <router-link to="/" class="health-nav__btn">
+              <arrow-back class="health-nav__icon"/>
+              Health
+            </router-link>
+          </div>
+        </base-container>
+      </base-nav>
       <base-container>
         <main class="main">
           <health-list/>
@@ -40,12 +44,10 @@ export default {
   background-color: $color-grey-light-1;
 }
 
-.nav {
+.health-nav {
+  height: 100%;
   display: flex;
   align-items: center;
-  background-color: $color-primary;
-  color: #fff;
-  padding: 0 1rem;
 
   &__btn {
     display: flex;

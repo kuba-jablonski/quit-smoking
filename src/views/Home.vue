@@ -1,12 +1,16 @@
 <template>
   <transition name="slide-half">
     <div class="home">
-      <nav class="nav">
-        <div class="nav__brand">Quiter!</div>
-        <router-link :to="{ path: '/settings', query: { component: 3 } }">
-          <settings-icon class="nav__btn"/>
-        </router-link>
-      </nav>
+      <base-nav>
+        <base-container>
+          <div class="home-nav">
+            <div class="home-nav__brand">Quiter!</div>
+            <router-link :to="{ path: '/settings', query: { component: 3 } }">
+              <settings-icon class="home-nav__btn"/>
+            </router-link>
+          </div>
+        </base-container>
+      </base-nav>
       <base-container>
         <main class="main">
           <router-link class="router-link" tag="div" :to="{ path: '/settings', query: { component: 2 } }">
@@ -54,13 +58,11 @@ export default {
   background-color: $color-grey-light-1;
 }
 
-.nav {
-  background-color: $color-primary;
+.home-nav {
   display: flex;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
-  color: #fff;
 
   &__brand {
     font-family: $font-display;
