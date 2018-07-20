@@ -10,7 +10,7 @@
       />
       <div class="form-btns mt-md">
         <slot name="form-user-buttons">
-          <base-button type="submit" color="primary" fullWidth>Save</base-button>
+          <base-button type="submit" color="primary" class="form-btn">Save</base-button>
         </slot>
       </div>
     </base-form>
@@ -59,5 +59,9 @@ export default {
 <style lang="scss" scoped>
 .form-btns {
   display: flex;
+}
+
+.form-btn {
+  margin: 0 auto;
 }
 </style>

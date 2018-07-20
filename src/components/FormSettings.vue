@@ -17,7 +17,7 @@
       </base-input>
       <div class="d-flex mt-md">
         <slot name="form-settings-buttons">
-          <base-button class="form-btn" type="submit" color="primary" fullWidth>Save</base-button>
+          <base-button class="form-btn" type="submit" color="primary">Save</base-button>
         </slot>
       </div>
     </base-form>
@@ -63,3 +63,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.form-btn {
+  margin: 0 auto;
+}
+</style>

@@ -12,7 +12,7 @@
         </base-input>
         <div class="d-flex mt-md">
           <slot name="form-login-buttons">
-            <base-button class="form-btn" type="submit" color="primary" fullWidth>Save</base-button>
+            <base-button class="form-btn" type="submit" color="primary">Submit</base-button>
           </slot>
         </div>
       </base-form>
@@ -36,7 +36,7 @@
         </base-input>
         <div class="d-flex mt-md">
           <slot name="form-register-buttons">
-            <base-button class="form-btn" type="submit" color="primary" fullWidth>Save</base-button>
+            <base-button class="form-btn" type="submit" color="primary">Submit</base-button>
           </slot>
         </div>
       </base-form>
@@ -95,5 +95,9 @@ export default {
   margin-top: 3rem;
   text-align: center;
   cursor: pointer;
+}
+
+.form-btn {
+  margin: 0 auto;
 }
 </style>
