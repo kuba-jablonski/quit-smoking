@@ -99,12 +99,23 @@ export default {
       this.modal.open = true;
       this.modal.text = "Are you sure you want to change your profile info?";
       this.modal.onConfirm = () => {
-        this.$store.dispatch("profile/setProfile", profile);
-        this.$store.dispatch("profile/updateProfile", profile);
-        this.modal.open = false;
-        setTimeout(() => {
-          this.$router.push("/");
-        }, 300);
+        try {
+          this.$store.dispatch("profile/setProfile", profile);
+          this.$store.dispatch("profile/updateProfile", profile);
+          this.modal.open = false;
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 300);
+        } catch (e) {
+          if (e.name === "QuotaExceededError") {
+            this.$store.commit(
+              "ui/setNotificationMsg",
+              "Image too large. Please pick another image."
+            );
+            this.$store.commit("ui/openNotification");
+            this.modal.open = false;
+          }
+        }
       };
     },
     async register(credentials) {
