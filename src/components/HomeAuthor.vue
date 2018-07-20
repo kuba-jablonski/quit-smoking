@@ -59,6 +59,11 @@ export default {
     height: 4rem;
     width: 4rem;
     fill: $color-grey-light-2;
+    transition: all 0.3s;
+
+    &:hover {
+      fill: $color-primary;
+    }
   }
 }
 </style>

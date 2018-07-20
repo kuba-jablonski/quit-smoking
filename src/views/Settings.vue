@@ -11,8 +11,9 @@
           </div>
         </base-container>
       </base-nav>
-      <settings-componentswitch :value="switchValue" @valueChange="onValueChange"/>
+      
       <base-container>
+        <settings-componentswitch :value="switchValue" @valueChange="onValueChange"/>
         <main class="main">
           <transition :name="transitionName" mode="out-in">
             <component
@@ -137,7 +138,7 @@ export default {
   min-height: 100%;
   min-width: 100%;
   display: grid;
-  grid-template-rows: 5rem 5rem 1fr;
+  grid-template-rows: 5rem 1fr;
   position: absolute;
   z-index: 1;
   background-color: $color-grey-light-1;

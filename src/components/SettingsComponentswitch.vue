@@ -36,6 +36,7 @@ export default {
 <style lang="scss" scoped>
 .component-switch {
   display: flex;
+  height: 5rem;
 
   &__btn {
     flex: 1 1;

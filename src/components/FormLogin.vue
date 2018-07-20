@@ -21,8 +21,8 @@
         <p class="title link">Register now.</p>
       </div>
     </div>
-    <div key="logout" v-if="isLogin && isAuthenticated">
-      <p class="title mb-md">You are logged in.</p>
+    <div key="logout" class="logout" v-if="isLogin && isAuthenticated">
+      <p class="title uppercase mb-md">You are logged in.</p>
       <base-button @click.native="logout">Logout</base-button>
     </div>
     <div key="register" v-if="!isLogin">
@@ -95,6 +95,10 @@ export default {
   margin-top: 3rem;
   text-align: center;
   cursor: pointer;
+}
+
+.logout {
+  text-align: center;
 }
 
 .form-btn {
