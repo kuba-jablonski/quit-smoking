@@ -79,8 +79,20 @@ export default {
       this.step++;
     },
     saveProfile(profile) {
-      this.$store.dispatch("profile/setProfile", profile);
-      this.step++;
+      // this.$store.dispatch("profile/setProfile", profile);
+      // this.step++;
+      try {
+        this.$store.dispatch("profile/setProfile", profile);
+        this.step++;
+      } catch (e) {
+        if (e.name === "QuotaExceededError") {
+          this.$store.commit(
+            "ui/setNotificationMsg",
+            "Image too large. Please pick another image."
+          );
+          this.$store.commit("ui/openNotification");
+        }
+      }
     },
     async login(credentials) {
       try {
