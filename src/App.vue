@@ -6,8 +6,8 @@
     </base-notification>
     <base-modal :open="modal.open">
       <p class="mb-hg">Found a difference between local and server data. Choose which you want to use.</p>
-      <base-button class="mr-md" color="green" @click.native="modal.useServerData">Use server data</base-button>
-      <base-button color="red" @click.native="modal.useLocalData">Use local data</base-button>
+      <base-button class="mr-md" color="primary" @click.native="modal.useServerData">Server</base-button>
+      <base-button color="primary" @click.native="modal.useLocalData">Local</base-button>
     </base-modal>
   </div>
 </template>
