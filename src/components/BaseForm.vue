@@ -8,5 +8,11 @@
 .form {
   display: grid;
   grid-gap: 1rem;
+  justify-items: center;
+
+  & > * {
+    width: 100%;
+    max-width: 60rem;
+  }
 }
 </style>
