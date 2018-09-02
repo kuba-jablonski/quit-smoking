@@ -4,7 +4,7 @@
       <base-nav>
         <base-container>
           <div class="home-nav">
-            <div class="home-nav__brand">Quiter!</div>
+            <div class="home-nav__brand">QuitBuddy!</div>
             <router-link :to="{ path: '/settings', query: { component: 3 } }">
               <settings-icon class="home-nav__btn"/>
             </router-link>
@@ -67,7 +67,6 @@ export default {
   &__brand {
     font-family: $font-display;
     font-size: 2.5rem;
-    text-transform: uppercase;
   }
 
   &__btn {
