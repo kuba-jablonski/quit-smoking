@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="btnClasses">
+  <button :type="type" :class="btnClasses" v-on="$listeners">
     <slot/>
   </button>
 </template>
@@ -17,6 +17,10 @@ export default {
     },
     color: {
       type: String
+    },
+    raised: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -26,7 +30,9 @@ export default {
         "btn--fullwidth": this.fullWidth,
         "btn--primary": this.color === "primary",
         "btn--green": this.color === "green",
-        "btn--red": this.color === "red"
+        "btn--red": this.color === "red",
+        "btn--primary-inverted": this.color === "primary-inverted",
+        "btn--raised": this.raised
       }
     };
   }
@@ -76,12 +82,21 @@ export default {
     @include btnColor($color-primary);
   }
 
+  &--primary-inverted {
+    background-color: #fff;
+    color: $color-primary;
+  }
+
   &--green {
     @include btnColor($color-green);
   }
 
   &--red {
     @include btnColor($color-red);
+  }
+
+  &--raised {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 }
 </style>

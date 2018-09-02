@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-half">
-    <div class="home">
+    <div v-if="settingsSet" class="home">
       <base-nav>
         <base-container>
           <div class="home-nav">
@@ -26,6 +26,11 @@
       </base-container>
       <home-author/>
     </div>
+    <div v-else class="welcome">
+      <h1 class="h1">QuitBuddy!</h1>
+      <p class="mb-hg uppercase">feel good about quitting</p>
+      <base-button color="primary-inverted" raised @click="$router.push('/setup')">Get started</base-button>
+    </div>
   </transition>
 </template>
 
@@ -43,12 +48,29 @@ export default {
     SettingsIcon,
     HomeHealth,
     HomeAuthor
+  },
+  computed: {
+    settingsSet() {
+      return this.$store.getters["core/settingsSet"];
+    }
   }
 };
 </script>
 
 
 <style lang="scss" scoped>
+.welcome {
+  background-color: $color-primary;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
 .home {
   height: 100%;
   width: 100%;

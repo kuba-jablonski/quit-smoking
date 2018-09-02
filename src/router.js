@@ -38,10 +38,10 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name === "setup") {
+  if (to.name === "home" || to.name === "setup") {
     next();
   } else {
-    store.getters["core/settingsSet"] ? next() : next("/setup");
+    store.getters["core/settingsSet"] ? next() : next("/home");
   }
 });
 
