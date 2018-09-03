@@ -58,7 +58,7 @@ export default {
   font-weight: 600;
   display: inline-block;
   height: 3.6rem;
-  min-width: 8.8rem;
+  min-width: 12rem;
   padding: 0.6rem 1.6rem;
   line-height: 1.42857143;
   text-align: center;
