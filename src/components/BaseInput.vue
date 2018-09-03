@@ -40,6 +40,8 @@ export default {
   color: $color-primary;
   border: none;
   outline: none;
+  box-shadow: none;
+  width: 100%;
 }
 </style>
 
