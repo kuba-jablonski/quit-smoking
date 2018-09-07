@@ -28,7 +28,7 @@
     </div>
     <div v-else class="welcome">
       <h1 class="h1">QuitBuddy!</h1>
-      <p class="mb-hg uppercase">feel good about quitting</p>
+      <p class="mb-hg uppercase bold">Makes quitting easier</p>
       <base-button color="primary-inverted" raised @click="$router.push('/setup')">Get started</base-button>
     </div>
   </transition>
