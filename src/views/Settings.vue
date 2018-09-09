@@ -1,43 +1,34 @@
 <template>
   <transition name="slide">
-    <div class="settings">
-      <base-nav>
-        <base-container>
-          <div class="settings-nav">
-            <router-link to="/" class="settings-nav__btn">
-              <arrow-back class="settings-nav__icon"/>
-              Settings
-            </router-link>
-          </div>
-        </base-container>
-      </base-nav>
-      
-      <base-container>
+    <base-layout>
+
         <settings-componentswitch :value="switchValue" @valueChange="onValueChange"/>
-        <main class="main">
-          <transition :name="transitionName" mode="out-in">
-            <component
-              :is="currentComponent"
-              @onSubmitSettings="saveSettings($event)"
-              @onSubmitUser="saveProfile($event)"
-              @onSubmitRegister="register($event)"
-              @onSubmitLogin="login($event)"
-              @onLogout="logout"
-            />
-          </transition>
-        </main>
-      </base-container>
+
+        <transition :name="transitionName" mode="out-in">
+          <component
+            :is="currentComponent"
+            @onSubmitSettings="saveSettings($event)"
+            @onSubmitUser="saveProfile($event)"
+            @onSubmitRegister="register($event)"
+            @onSubmitLogin="login($event)"
+            @onLogout="logout"
+          />
+        </transition>
+
       <base-modal :open="modal.open">
         <p class="mb-hg">{{ modal.text }}</p>
-        <base-button class="mr-md" color="green" @click.native="modal.onConfirm">Yes</base-button>
-        <base-button color="red" @click.native="modal.open = false">No</base-button>
+        <base-button class="mr-md" color="green" @click="modal.onConfirm">Yes</base-button>
+        <base-button color="red" @click="modal.open = false">No</base-button>
       </base-modal>
-    </div>
+
+    </base-layout> 
+
+
+
   </transition>
 </template>
 
 <script>
-import ArrowBack from "@/assets/svg/arrow_back.svg";
 import FormSettings from "@/components/FormSettings";
 import FormProfile from "@/components/FormProfile";
 import FormLogin from "@/components/FormLogin";
@@ -45,7 +36,6 @@ import SettingsComponentswitch from "@/components/SettingsComponentswitch";
 
 export default {
   components: {
-    ArrowBack,
     FormSettings,
     FormProfile,
     FormLogin,

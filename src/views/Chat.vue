@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="chat">
+    <base-layout>
       <base-nav>
         <!-- <base-container> -->
           <div class="chat-nav">
@@ -19,7 +19,7 @@
           <input type="text">
         </main>
       </base-container>
-    </div>
+    </base-layout>
   </transition>
 </template>
 
@@ -35,15 +35,15 @@ export default {
 
 
 <style lang="scss" scoped>
-.chat {
-  min-height: 100%;
-  min-width: 100%;
-  display: grid;
-  grid-template-rows: 5rem 1fr;
-  position: absolute;
-  z-index: 1;
-  background-color: $color-grey-light-1;
-}
+// .chat {
+//   min-height: 100%;
+//   min-width: 100%;
+//   display: grid;
+//   grid-template-rows: 5rem 1fr;
+//   position: absolute;
+//   z-index: 1;
+//   background-color: $color-grey-light-1;
+// }
 
 .chat-nav {
   height: 100%;
@@ -72,6 +72,6 @@ export default {
   // padding: 1rem;
   display: grid;
   height: 100%;
-  // grid-template-rows: calc(100% - 3rem) 3rem;
+  grid-template-rows: calc(100% - 3rem) 3rem;
 }
 </style>

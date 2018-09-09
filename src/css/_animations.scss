@@ -1,5 +1,7 @@
 .slide-enter-active {
   transition: transform 0.3s ease-out;
+  // keep deeper routes on top
+  z-index: 1;
 }
 .slide-leave-active {
   transition: transform 0.3s ease-out;
