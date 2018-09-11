@@ -1,12 +1,7 @@
 <template>
   <transition name="slide">
     <base-layout>
-      <!-- <base-nav/> -->
-      <base-container>
-        <main class="main">
-          <health-list/>
-        </main>
-      </base-container>
+      <health-list/>
     </base-layout>
   </transition>
 </template>
@@ -20,10 +15,3 @@ export default {
   }
 };
 </script>
-
-
-<style lang="scss" scoped>
-.main {
-  padding: 1rem;
-}
-</style>

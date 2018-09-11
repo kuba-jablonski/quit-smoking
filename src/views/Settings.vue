@@ -1,19 +1,20 @@
 <template>
   <transition name="slide">
     <base-layout>
-
+      <base-nav extended slot="header">
         <settings-componentswitch :value="switchValue" @valueChange="onValueChange"/>
-
-        <transition :name="transitionName" mode="out-in">
-          <component
-            :is="currentComponent"
-            @onSubmitSettings="saveSettings($event)"
-            @onSubmitUser="saveProfile($event)"
-            @onSubmitRegister="register($event)"
-            @onSubmitLogin="login($event)"
-            @onLogout="logout"
-          />
-        </transition>
+      </base-nav>
+        
+      <transition :name="transitionName" mode="out-in">
+        <component
+          :is="currentComponent"
+          @onSubmitSettings="saveSettings($event)"
+          @onSubmitUser="saveProfile($event)"
+          @onSubmitRegister="register($event)"
+          @onSubmitLogin="login($event)"
+          @onLogout="logout"
+        />
+      </transition>
 
       <base-modal :open="modal.open">
         <p class="mb-hg">{{ modal.text }}</p>
@@ -21,10 +22,7 @@
         <base-button color="red" @click="modal.open = false">No</base-button>
       </base-modal>
 
-    </base-layout> 
-
-
-
+    </base-layout>
   </transition>
 </template>
 

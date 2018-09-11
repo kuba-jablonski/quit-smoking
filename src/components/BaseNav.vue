@@ -1,19 +1,24 @@
 <template>
   <nav class="nav">
-    <base-container>
-      <div class="nav__items" v-if="$route.name === 'home'">
-        <div class="nav__brand">QuitBuddy!</div>
-        <router-link :to="{ path: '/settings', query: { component: 3 } }">
-          <settings-icon class="nav__icon"/>
-        </router-link>
-      </div>
-      <div v-else class="nav__items">
-        <router-link to="/" class="nav__btn">
-          <arrow-back class="nav__icon"/>
-          {{ $route.name }}
-        </router-link>
-      </div>
-    </base-container>
+    <div class="nav__main">
+      <base-container>
+        <div class="nav__items">
+          <div v-if="$route.name === 'home'" class="nav__brand">QuitBuddy!</div>
+          <router-link v-if="$route.name === 'home'" :to="{ path: '/settings', query: { component: 3 } }">
+            <settings-icon class="nav__icon"/>
+          </router-link>
+          <router-link v-if="$route.name !== 'home'" to="/" class="nav__btn">
+            <arrow-back class="nav__icon"/>
+            {{ $route.name }}
+          </router-link>
+        </div>
+      </base-container>
+    </div>
+    <div v-if="extended" class="nav__extension">
+      <base-container>
+        <slot/>
+      </base-container>
+    </div>
   </nav>
 </template>
 
@@ -25,6 +30,12 @@ export default {
   components: {
     ArrowBack,
     SettingsIcon
+  },
+  props: {
+    extended: {
+      type: Boolean,
+      default: false
+    }
   }
 };
 </script>
@@ -32,17 +43,25 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
-  background-color: $color-primary;
-  padding: 0 1rem;
   color: #fff;
-  height: 5rem;
   width: 100%;
 
+  &__main {
+    background-color: $color-primary;
+  }
+
   &__items {
+    padding: 0 1rem;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 5rem;
+  }
+
+  &__extension {
+    height: 5rem;
+    background-color: $color-grey-light-1;
   }
 
   &__brand {
