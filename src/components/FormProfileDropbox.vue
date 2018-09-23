@@ -1,6 +1,6 @@
 <template>
   <base-input>
-    Upload a profile image.
+    Upload a profile image. (optional)
     <div slot="control" v-if="!fileSrc" class="dropbox">
       <input
         type="file"
@@ -105,6 +105,7 @@ export default {
 
   &__image {
     display: block;
+    max-width: 95%;
     width: 30rem;
     height: 30rem;
     object-fit: cover;

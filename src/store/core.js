@@ -9,7 +9,7 @@ export default {
     cigsPerDay: null,
     cigsInPack: null,
     packCost: null,
-    currentTime: null
+    currentTime: DateTime.local()
   },
   mutations: {
     setCurrentTime(state, time) {

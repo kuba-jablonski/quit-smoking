@@ -14,7 +14,7 @@
             >
               <template slot="form-user-buttons">
                 <base-button @click.native="previousStep = step; step--" class="mr-auto">Back</base-button>
-                <base-button @click.native="previousStep = step; step++" class="mr-md">Skip</base-button>
+                <!-- <base-button @click.native="previousStep = step; step++" class="mr-md">Skip</base-button> -->
                 <base-button type="submit" color="primary">Save</base-button>
               </template>
               <template slot="form-settings-buttons">

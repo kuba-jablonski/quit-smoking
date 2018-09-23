@@ -4,7 +4,6 @@ import Home from "./views/Home.vue";
 import Settings from "./views/Settings.vue";
 import Setup from "./views/Setup.vue";
 import Health from "./views/Health.vue";
-import Chat from "./views/Chat.vue";
 import store from "./store";
 
 Vue.use(Router);
@@ -30,11 +29,6 @@ const router = new Router({
       path: "/health",
       name: "health",
       component: Health
-    },
-    {
-      path: "/chat",
-      name: "chat",
-      component: Chat
     },
     {
       path: "*",

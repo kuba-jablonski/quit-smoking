@@ -1,5 +1,5 @@
 <template>
-  <base-card :style="{ padding: 0 }" v-if="username">
+  <base-card :style="{ padding: 0, paddingRight: '1rem' }" v-if="username">
     <div class="user">
       <div v-if="fileSrc" class="user__image">
         <img :src="fileSrc" alt="">
