@@ -44,13 +44,33 @@ export default {
     onFileChange(file) {
       const reader = new FileReader();
 
-      reader.onload = e => {
+      reader.onload = async e => {
+        const img = await this.compress(e.target.result, 10);
         this.$emit("onFileChange", {
           filename: file.name,
-          fileSrc: e.target.result
+          fileSrc: img
         });
       };
       reader.readAsDataURL(file);
+    },
+    async compress(dataUrl, newWidth) {
+      const image = new Image();
+      image.src = dataUrl;
+
+      await image.onload;
+      console.log("running");
+      const oldWidth = image.width;
+      const oldHeight = image.height;
+      const newHeight = Math.floor((oldHeight / oldWidth) * newWidth);
+
+      const canvas = document.createElement("canvas");
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0, newWidth, newHeight);
+      // console.log(canvas.toDataURL())
+      return canvas.toDataURL();
     }
   }
 };

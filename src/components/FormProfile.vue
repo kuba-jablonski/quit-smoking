@@ -19,10 +19,12 @@
 
 <script>
 import FormProfileDropbox from "@/components/FormProfileDropbox";
+import imageCompressor from "vue-image-compressor";
 
 export default {
   components: {
-    FormProfileDropbox
+    FormProfileDropbox,
+    imageCompressor
   },
   data() {
     return {
@@ -48,6 +50,9 @@ export default {
       this.username = username;
       this.filename = filename;
       this.fileSrc = fileSrc;
+    },
+    getFiles(obj) {
+      console.log(obj);
     }
   },
   mounted() {
