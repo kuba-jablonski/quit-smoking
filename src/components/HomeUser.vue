@@ -2,7 +2,7 @@
   <base-card :style="{ padding: 0, paddingRight: '1rem' }" v-if="username">
     <div class="user">
       <div v-if="fileSrc" class="user__image">
-        <img :style="imageRotationStyle" :src="fileSrc" alt="">
+        <user-image :fileSrc="fileSrc" :rotation="rotation"/>
       </div>
       <div class="user__text">
         <p class="title">Keep it up {{ username }}!</p>
@@ -14,8 +14,12 @@
 
 <script>
 import { mapState } from "vuex";
+import UserImage from "@/components/UserImage";
 
 export default {
+  components: {
+    UserImage
+  },
   computed: {
     ...mapState("profile", ["username", "fileSrc", "rotation"]),
     imageRotationStyle() {

@@ -14,10 +14,11 @@
     </div>
     <div slot="control" v-else class="dropbox-full">
       <div class="dropbox-full__image-container">
-        <img class="dropbox-full__image" :style="imageRotationStyle" :src="fileSrc" alt="">
+        <div class="dropbox-full__image">
+          <user-image :fileSrc="fileSrc" :rotation="rotation"/>
+        </div>
       </div>
       <div class="dropbox-full__image-details">
-        <!-- <p class="c-primary bold mb-md">{{ filename }}</p> -->
         <arrow-back @click.native="$emit('update:rotation', rotation + 90)" class="icon"/>
         <base-button>
           <span>Change Image</span>
@@ -36,11 +37,13 @@
 
 <script>
 import ArrowBack from "@/assets/svg/arrow_back.svg";
+import UserImage from "@/components/UserImage";
 
 export default {
   props: ["filename", "fileSrc", "rotation"],
   components: {
-    ArrowBack
+    ArrowBack,
+    UserImage
   },
   data() {
     return {
@@ -72,7 +75,6 @@ export default {
       image.src = dataUrl;
 
       await image.onload;
-      console.log("running");
       const oldWidth = image.width;
       const oldHeight = image.height;
       const newHeight = Math.floor((oldHeight / oldWidth) * newWidth);
@@ -83,7 +85,6 @@ export default {
 
       const ctx = canvas.getContext("2d");
       ctx.drawImage(image, 0, 0, newWidth, newHeight);
-      // console.log(canvas.toDataURL())
       return canvas.toDataURL();
     }
   }
@@ -133,7 +134,6 @@ export default {
     margin: 0 auto;
     flex: 1 1;
     display: flex;
-    // flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 2rem;
@@ -144,7 +144,6 @@ export default {
     max-width: 95%;
     width: 30rem;
     height: 30rem;
-    object-fit: cover;
     margin: 2rem;
     outline: 2px dashed grey;
   }
