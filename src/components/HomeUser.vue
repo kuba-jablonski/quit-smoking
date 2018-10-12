@@ -2,7 +2,7 @@
   <base-card :style="{ padding: 0, paddingRight: '1rem' }" v-if="username">
     <div class="user">
       <div v-if="fileSrc" class="user__image">
-        <img :src="fileSrc" alt="">
+        <img :style="imageRotationStyle" :src="fileSrc" alt="">
       </div>
       <div class="user__text">
         <p class="title">Keep it up {{ username }}!</p>
@@ -17,7 +17,12 @@ import { mapState } from "vuex";
 
 export default {
   computed: {
-    ...mapState("profile", ["username", "fileSrc"]),
+    ...mapState("profile", ["username", "fileSrc", "rotation"]),
+    imageRotationStyle() {
+      return {
+        transform: `rotate(${this.rotation}deg)`
+      };
+    },
     quitDate() {
       return this.$store.getters["core/quitDateObject"].toLocaleString({
         year: "numeric",

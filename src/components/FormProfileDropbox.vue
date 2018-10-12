@@ -14,10 +14,11 @@
     </div>
     <div slot="control" v-else class="dropbox-full">
       <div class="dropbox-full__image-container">
-        <img class="dropbox-full__image" :src="fileSrc" alt="">
+        <img class="dropbox-full__image" :style="imageRotationStyle" :src="fileSrc" alt="">
       </div>
       <div class="dropbox-full__image-details">
-        <p class="c-primary bold mb-md">{{ filename }}</p>
+        <!-- <p class="c-primary bold mb-md">{{ filename }}</p> -->
+        <arrow-back @click.native="$emit('update:rotation', rotation + 90)" class="icon"/>
         <base-button>
           <span>Change Image</span>
           <input
@@ -27,18 +28,31 @@
             class="input-file"
           >
         </base-button>
+        <arrow-back @click.native="$emit('update:rotation', rotation - 90)" class="icon"/>
       </div>
     </div>
   </base-input>
 </template>
 
 <script>
+import ArrowBack from "@/assets/svg/arrow_back.svg";
+
 export default {
-  props: ["filename", "fileSrc"],
+  props: ["filename", "fileSrc", "rotation"],
+  components: {
+    ArrowBack
+  },
   data() {
     return {
       msg: "Drag your file here\n or click to begin"
     };
+  },
+  computed: {
+    imageRotationStyle() {
+      return {
+        transform: `rotate(${this.rotation}deg)`
+      };
+    }
   },
   methods: {
     onFileChange(file) {
@@ -115,10 +129,12 @@ export default {
   }
 
   &__image-details {
+    width: 30rem;
+    margin: 0 auto;
     flex: 1 1;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    // flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     padding-bottom: 2rem;
   }
@@ -132,5 +148,10 @@ export default {
     margin: 2rem;
     outline: 2px dashed grey;
   }
+}
+
+.icon {
+  height: 3rem;
+  width: 3rem;
 }
 </style>

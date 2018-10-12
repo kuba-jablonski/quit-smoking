@@ -6,6 +6,7 @@
       <form-profile-dropbox
         :filename="filename"
         :file-src="fileSrc"
+        :rotation.sync="rotation"
         @onFileChange="onFileChange($event)"
       />
       <div class="form-btns mt-md">
@@ -19,18 +20,17 @@
 
 <script>
 import FormProfileDropbox from "@/components/FormProfileDropbox";
-import imageCompressor from "vue-image-compressor";
 
 export default {
   components: {
-    FormProfileDropbox,
-    imageCompressor
+    FormProfileDropbox
   },
   data() {
     return {
       username: "",
       filename: "",
-      fileSrc: ""
+      fileSrc: "",
+      rotation: 0
     };
   },
   methods: {
@@ -42,14 +42,21 @@ export default {
       this.$emit("onSubmitUser", {
         username: this.username,
         filename: this.filename,
-        fileSrc: this.fileSrc
+        fileSrc: this.fileSrc,
+        rotation: this.rotation
       });
     },
     populateFormFields() {
-      const { username, filename, fileSrc } = this.$store.state.profile;
+      const {
+        username,
+        filename,
+        fileSrc,
+        rotation
+      } = this.$store.state.profile;
       this.username = username;
       this.filename = filename;
       this.fileSrc = fileSrc;
+      this.rotation = rotation;
     },
     getFiles(obj) {
       console.log(obj);
