@@ -1,5 +1,5 @@
 <template functional>
-  <img :src="props.fileSrc" :style="{ transform: `rotate(${props.rotation}deg)` }">
+  <img :src="props.fileSrc" :style="{ transform: `rotate(${props.rotation}deg)` }" alt="User Profile Image">
 </template>
 
 <style lang="scss" scoped>
