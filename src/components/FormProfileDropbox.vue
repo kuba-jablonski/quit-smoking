@@ -2,12 +2,7 @@
   <base-input>
     Upload a profile image. (optional)
     <div slot="control" v-if="!fileSrc" class="dropbox">
-      <input
-        type="file"
-        @change="onFileChange($event.target.files[0])"
-        accept="image/*"
-        class="input-file"
-      >
+      <input type="file" @change="onFileChange($event.target.files[0])" accept="image/*" class="input-file">
       <p>
         Drag your file here<br> or click to browse
       </p>
@@ -15,34 +10,31 @@
     <div slot="control" v-else class="dropbox-full">
       <div class="dropbox-full__image-container">
         <div class="dropbox-full__image">
-          <user-image :fileSrc="fileSrc" :rotation="rotation"/>
+          <user-image :fileSrc="fileSrc" :rotation="rotation" />
         </div>
       </div>
       <div class="dropbox-full__image-details">
-        <arrow-back @click.native="$emit('update:rotation', rotation + 90)" class="icon"/>
+        <rotate-left @click.native="$emit('update:rotation', rotation + 90)" class="icon" />
         <base-button>
           <span>Change Image</span>
-          <input
-            type="file"
-            @change="onFileChange($event.target.files[0])"
-            accept="image/*"
-            class="input-file"
-          >
+          <input type="file" @change="onFileChange($event.target.files[0])" accept="image/*" class="input-file">
         </base-button>
-        <arrow-back @click.native="$emit('update:rotation', rotation - 90)" class="icon"/>
+        <rotate-right @click.native="$emit('update:rotation', rotation - 90)" class="icon" />
       </div>
     </div>
   </base-input>
 </template>
 
 <script>
-import ArrowBack from "@/assets/svg/arrow_back.svg";
+import RotateLeft from "@/assets/svg/rotate-cw.svg";
+import RotateRight from "@/assets/svg/rotate-ccw.svg";
 import UserImage from "@/components/UserImage";
 
 export default {
   props: ["filename", "fileSrc", "rotation"],
   components: {
-    ArrowBack,
+    RotateRight,
+    RotateLeft,
     UserImage
   },
   data() {
@@ -145,12 +137,12 @@ export default {
     width: 30rem;
     height: 30rem;
     margin: 2rem;
-    outline: 2px dashed grey;
   }
 }
 
 .icon {
   height: 3rem;
   width: 3rem;
+  cursor: pointer;
 }
 </style>
