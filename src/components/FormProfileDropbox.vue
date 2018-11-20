@@ -54,7 +54,7 @@ export default {
       const reader = new FileReader();
 
       reader.onload = async e => {
-        const img = await this.compress(e.target.result, 10);
+        const img = await this.compress(e.target.result, 300);
         this.$emit("onFileChange", {
           filename: file.name,
           fileSrc: img
