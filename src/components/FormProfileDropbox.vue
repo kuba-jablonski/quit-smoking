@@ -2,55 +2,82 @@
   <base-input>
     Upload a profile image. (optional)
     <div slot="control" v-if="!fileSrc" class="dropbox">
-      <input
-        type="file"
-        @change="onFileChange($event.target.files[0])"
-        accept="image/*"
-        class="input-file"
-      >
+      <input type="file" @change="onFileChange($event.target.files[0])" accept="image/*" class="input-file">
       <p>
         Drag your file here<br> or click to browse
       </p>
     </div>
     <div slot="control" v-else class="dropbox-full">
       <div class="dropbox-full__image-container">
-        <img class="dropbox-full__image" :src="fileSrc" alt="">
+        <div class="dropbox-full__image">
+          <user-image :fileSrc="fileSrc" :rotation="rotation" />
+        </div>
       </div>
       <div class="dropbox-full__image-details">
-        <p class="c-primary bold mb-md">{{ filename }}</p>
+        <rotate-left @click.native="$emit('update:rotation', rotation + 90)" class="icon" />
         <base-button>
           <span>Change Image</span>
-          <input
-            type="file"
-            @change="onFileChange($event.target.files[0])"
-            accept="image/*"
-            class="input-file"
-          >
+          <input type="file" @change="onFileChange($event.target.files[0])" accept="image/*" class="input-file">
         </base-button>
+        <rotate-right @click.native="$emit('update:rotation', rotation - 90)" class="icon" />
       </div>
     </div>
   </base-input>
 </template>
 
 <script>
+import RotateLeft from "@/assets/svg/rotate-cw.svg";
+import RotateRight from "@/assets/svg/rotate-ccw.svg";
+import UserImage from "@/components/UserImage";
+
 export default {
-  props: ["filename", "fileSrc"],
+  props: ["filename", "fileSrc", "rotation"],
+  components: {
+    RotateRight,
+    RotateLeft,
+    UserImage
+  },
   data() {
     return {
       msg: "Drag your file here\n or click to begin"
     };
   },
+  computed: {
+    imageRotationStyle() {
+      return {
+        transform: `rotate(${this.rotation}deg)`
+      };
+    }
+  },
   methods: {
     onFileChange(file) {
       const reader = new FileReader();
 
-      reader.onload = e => {
+      reader.onload = async e => {
+        const img = await this.compress(e.target.result, 10);
         this.$emit("onFileChange", {
           filename: file.name,
-          fileSrc: e.target.result
+          fileSrc: img
         });
       };
       reader.readAsDataURL(file);
+    },
+    async compress(dataUrl, newWidth) {
+      const image = new Image();
+      image.src = dataUrl;
+
+      await image.onload;
+      const oldWidth = image.width;
+      const oldHeight = image.height;
+      const newHeight = Math.floor((oldHeight / oldWidth) * newWidth);
+
+      const canvas = document.createElement("canvas");
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0, newWidth, newHeight);
+      return canvas.toDataURL();
     }
   }
 };
@@ -95,10 +122,11 @@ export default {
   }
 
   &__image-details {
+    width: 30rem;
+    margin: 0 auto;
     flex: 1 1;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding-bottom: 2rem;
   }
@@ -108,9 +136,13 @@ export default {
     max-width: 95%;
     width: 30rem;
     height: 30rem;
-    object-fit: cover;
     margin: 2rem;
-    outline: 2px dashed grey;
   }
+}
+
+.icon {
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
 }
 </style>

@@ -5,7 +5,8 @@ export default {
   state: {
     username: null,
     filename: null,
-    fileSrc: null
+    fileSrc: null,
+    rotation: null
   },
   mutations: {
     setUsername(state, payload) {
@@ -16,6 +17,9 @@ export default {
     },
     setFileSrc(state, payload) {
       state.fileSrc = payload;
+    },
+    setRotation(state, payload) {
+      state.rotation = payload;
     }
   },
   actions: {
@@ -24,6 +28,7 @@ export default {
       commit("setUsername", profile.username);
       commit("setFilename", profile.filename);
       commit("setFileSrc", profile.fileSrc);
+      commit("setRotation", profile.rotation);
     },
     async updateProfile({ commit }, payload) {
       const token = getToken();
@@ -55,8 +60,8 @@ export default {
     }
   },
   getters: {
-    profile({ username, filename, fileSrc }) {
-      return { username, filename, fileSrc };
+    profile({ username, filename, fileSrc, rotation }) {
+      return { username, filename, fileSrc, rotation };
     }
   }
 };
